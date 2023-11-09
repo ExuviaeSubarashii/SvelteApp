@@ -33,7 +33,6 @@ fetch(`${baseUrl}/User/Login`, requestOptions)
         localStorage.setItem('userEmail', data.userEmail);
         localStorage.setItem('userName', data.userName);
         localStorage.setItem('isLoggedIn', "true");
-        window.location.href = '/';
     })
     .catch(error => {
         console.error('Error occurred while sending the request:', error);

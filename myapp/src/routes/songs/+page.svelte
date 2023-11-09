@@ -1,4 +1,5 @@
 <script lang="ts">
-import PlayListPage from '../../components/PlayListPage.svelte';
+import GetSongs from '../../components/PlayListPage.svelte';
+import exportedId from '../../components/PlayLists.svelte'
 </script>
-<PlayListPage/>
+<GetSongs/>
