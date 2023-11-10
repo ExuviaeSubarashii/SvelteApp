@@ -7,8 +7,6 @@
   
     const baseUrl = "http://localhost:5128/api";
     let playlists:any = [];
-
-
     async function GetUserPlayLists() {
 
       const requestOptions = {
@@ -28,12 +26,10 @@
         console.error('Error:', error);
       }
     }
-
-    function SetId(id:any){
+    function SetId(id:any,url:any){
       exportedId.set(id);
       console.log(exportedId);
     }
-
 
     onMount(GetUserPlayLists);
   </script>
@@ -41,12 +37,19 @@
   <!-- Render your playlists data below -->
   {#each playlists as playlist (playlist.playListId)}
   <hr>
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="playlistSummary" tabindex="0" role="button" aria-pressed="false" id="{playlist.playListId}">
-      <a href="songs" on:click={() => SetId(playlist.playListId)}>ASD</a>
-      <p class="playlistTitle">{playlist.playListTitle}</p>
-      <p class="playlistOwner">{playlist.playListOwner}</p>
-      <p class="playlistType">{playlist.playListType}</p>
-      <p class="playListCount">{playlist.playListCount} Songs</p>
-    </div>
-  {/each}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <div class="playlistSummary" tabindex="0" role="button" aria-pressed="false" id="{playlist.playListId}">
+    <h3>
+      <a class="playlistTitle" href="songs/?id={encodeURIComponent(playlist.playListId)}" on:click={() => SetId(playlist.playListId, `songs/?id=${encodeURIComponent(playlist.playListId)}`)}>{playlist.playListTitle}</a>
+    </h3>
+    <h4 class="playlistOwner">{playlist.playListOwner}</h4>
+    <p class="playlistType">{playlist.playListType}</p>
+    <p class="playListCount">{playlist.playListCount} Songs</p>
+  </div>
+{/each}
+<style>
+  .playlistSummary {
+   font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
+

@@ -42,7 +42,7 @@ let questions = [];
       <button><a href="register">Register</a></button>
   </div>
   {/if}
-  <label style="color:gray;"><a> <i class='bx bx-home'></i>Home</a></label>
+  <label style="color:gray;"><a href="/"> <i class='bx bx-home'></i>Home</a></label>
   <label style="color:gray;"><a><i class='bx bx-search'></i> Search</a></label>
   <label style="color:gray;"><a><i class='bx bx-library'></i>Your Library</a></label>
   <div>

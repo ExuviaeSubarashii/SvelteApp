@@ -7,7 +7,6 @@
 
 <div class="centered-div">
     <SuggestedPlayLists/>
-
 </div>
 <style>
 .centered-div {
