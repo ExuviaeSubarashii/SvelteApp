@@ -2,40 +2,17 @@
 	import { base } from "$app/paths";
 	import userTokenValue, { usertoken } from "../datas/user";
 	import PlayLists from "./PlayLists.svelte";
+    import GetUserPlayLists from '../components/PlayLists.svelte'
+	import { ThePlayListThing } from "../datas/playlistTypes";
+    import { howgood } from "../datas/gettoday";
 const baseUrl = "http://localhost:5128/api";
-let questions = [];
-  let howgood = "";
-  
-  
-
-  function GetToday() {
-      var currentTime = new Date();
-      var currentHour = currentTime.getHours();
-
-      if (currentHour >= 0 && currentHour <= 11) {
-          howgood = "Good Morning";
-          console.log("Good Morning");
-          console.log(userTokenValue)
-      } else if (currentHour >= 12 && currentHour <= 18) {
-          howgood = "Good Afternoon";
-          console.log("Afternoon");
-      } else if (currentHour >= 19 && currentHour <= 24) {
-          howgood = "Good Evening";
-          console.log("Evening");
-          
-      }
-  }
-  GetToday();
-
 </script>
-
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <div class="fullbody">
   <button><i class='bx bx-left-arrow-alt'></i></button>
   <button><i class='bx bx-right-arrow-alt'></i></button>
   <p id="howgood">{howgood}</p>
-
   {#if userTokenValue===null||userTokenValue===undefined}
   <div class="logins">
       <button><a href="login">Login</a></button>
@@ -43,21 +20,21 @@ let questions = [];
   </div>
   {/if}
   <label style="color:gray;"><a href="/"> <i class='bx bx-home'></i>Home</a></label>
-  <label style="color:gray;"><a><i class='bx bx-search'></i> Search</a></label>
-  <label style="color:gray;"><a><i class='bx bx-library'></i>Your Library</a></label>
+  <label style="color:gray;"><a href="/"><i class='bx bx-search'></i> Search</a></label>
+  <label style="color:gray;"><a href="/"><i class='bx bx-library'></i>Your Library</a></label>
   <div>
-      <button style="text-align:center;">Playlists</button>
+      <button style="text-align:center;" on:click={()=> ThePlayListThing("")}>Playlists</button>
       <button><i class='bx bx-plus'></i></button>
     </div>
-  <button>Podcasts & Shows</button>
-  <button>Albums</button>
+  <button on:click={()=> ThePlayListThing("Podcast")}>Podcasts & Shows</button>
+  <button on:click={()=> ThePlayListThing("Albums")}>Albums</button>
+  
   <button style="background-color:transparent; color:gray;"><i class='bx bx-search'></i></button>
   <input style="border-radius: 25px; background-color:gray; color:white;" id="searchpl" />
   <div class="playLists">
 <PlayLists/>
   </div>
 </div>
-
 <style>
   .fullbody {
       text-align: center;

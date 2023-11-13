@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { base } from "$app/paths";
 	import { onMount } from "svelte";
+  import { page } from '$app/stores';
+  import {SetId} from '.././datas/songs'
 
     import {userTokenValue} from '../datas/user';
   const baseUrl = "http://localhost:5128/api";
-  let playlists:any = [];
+  let playlist:any = [];
 
   async function GetUserSuggestedPlayLists() {
 
@@ -19,8 +21,8 @@ try {
     throw new Error(response.statusText);
   }
   const data = await response.json();
-  playlists = data;
-  console.log(`suggested`,playlists);
+  playlist = data;
+  console.log(`suggested`,playlist);
 } catch (error) {
   console.error('Error:', error);
 }
@@ -31,8 +33,28 @@ console.log(id);
     onMount(GetUserSuggestedPlayLists);
 </script>
 
-{#each playlists as playlist (playlist.playListId) }
-  <div class="playlistSummary" tabindex="1" role="button" aria-pressed="false" id="{playlist.playListId}" on:click={() => GetPlaylistId(playlist.playListId)}>
-    <p class="playlistTitle">{playlist.title}</p>
+{#each playlist as playlist (playlist.playListId) }
+
+  <div class="playlistSummary" tabindex="1" role="button" aria-pressed="false" id="{playlist.playListId}">
+    <h3>
+      <button class="playlistTitle">
+        <a  href="songs/?id={encodeURIComponent(playlist.playListId)}" on:click={() => SetId(playlist.playListId, `songs/?id=${encodeURIComponent(playlist.playListId)}`)}>{playlist.title}</a>
+      </button>
+    </h3>
   </div>
 {/each}
+<style>
+  .playlistTitle{
+    background-color: transparent;
+    border-radius:10px ;
+  }
+  .playlistTitle a{
+    text-decoration: none;
+    background-color: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      margin: 0 10px;
+  }
+</style>

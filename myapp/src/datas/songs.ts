@@ -1,4 +1,6 @@
   
+  import { exportedId } from '../datas/store';
+  
   export async function GetSongs(id:string) {
 
     const baseUrl = "http://localhost:5128/api";
@@ -20,4 +22,8 @@
       return [];
     }
   }
-  
+  export function SetId(id:any){
+    console.clear();
+    exportedId.set(id);
+    console.log(exportedId);
+  }

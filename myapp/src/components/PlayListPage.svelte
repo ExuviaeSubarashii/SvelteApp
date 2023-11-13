@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
+	import {afterUpdate, beforeUpdate, onDestroy, onMount} from 'svelte';
   import { GetSongs } from '../datas/songs';
   import { exportedId } from '../datas/store';
-
+  import { SetCurrentSong, songProperties } from '../datas/listening';
+	import PlayBar from './PlayBar.svelte';
   let songs: any = []; 
 
   const unsubscribe = exportedId.subscribe(async (id) => {
@@ -17,15 +18,24 @@
   onDestroy(() => {
     unsubscribe();
   });
+
   </script>
   
-  {#each songs as song (song.songId)}
-  <div class="song-container">
-    <p class="songName">{song.songName}</p>
+  {#each songs as song}
+  <div class="song-container" id="{song.songId}">
+    {"title"}
+    <button on:click={()=>SetCurrentSong(song.songId)}>
+      <p class="songName">{song.songName}</p>
+    </button>
+    {"Date Added"}
     <p class="songDateAdded">{song.dateAdded}</p>
     <p class="songDuration">{song.duration}</p>
+    <p class="songArtist">{song.songArtist}</p>
+    <p class="songAlbum">{song.albumName}</p>
   </div>
 {/each}
+
+<PlayBar/>
 
   
   <style>

@@ -1,20 +1,23 @@
 <script>
     import SideBarContent from "../components/SideBarContent.svelte";
 	import SuggestedPlayLists from "../components/SuggestedPlayLists.svelte";
+    import PlayBar from "../components/PlayBar.svelte";
 </script>
-
     <SideBarContent/>
-
 <div class="centered-div">
     <SuggestedPlayLists/>
+
 </div>
+
+
 <style>
 .centered-div {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: lightblue;
+            background-color: gray;
             padding: 20px;
+            border-radius: 25px;
         }
 </style>
