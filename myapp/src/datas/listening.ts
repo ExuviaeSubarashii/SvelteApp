@@ -19,6 +19,3 @@ export async function SetCurrentSong(songId:any){
       }
 }
 export let songProperties:any;
-export async function GetCurrentSong(){
-
-}

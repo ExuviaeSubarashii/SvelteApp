@@ -5,6 +5,9 @@
     import GetUserPlayLists from '../components/PlayLists.svelte'
 	import { ThePlayListThing } from "../datas/playlistTypes";
     import { howgood } from "../datas/gettoday";
+    import PlayBar from "../components/PlayBar.svelte";
+    import {showComponent} from '../datas/store'
+
 const baseUrl = "http://localhost:5128/api";
 </script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -22,20 +25,33 @@ const baseUrl = "http://localhost:5128/api";
   <label style="color:gray;"><a href="/"> <i class='bx bx-home'></i>Home</a></label>
   <label style="color:gray;"><a href="/"><i class='bx bx-search'></i> Search</a></label>
   <label style="color:gray;"><a href="/"><i class='bx bx-library'></i>Your Library</a></label>
+
   <div>
       <button style="text-align:center;" on:click={()=> ThePlayListThing("")}>Playlists</button>
       <button><i class='bx bx-plus'></i></button>
     </div>
+   
   <button on:click={()=> ThePlayListThing("Podcast")}>Podcasts & Shows</button>
   <button on:click={()=> ThePlayListThing("Albums")}>Albums</button>
-  
+
   <button style="background-color:transparent; color:gray;"><i class='bx bx-search'></i></button>
   <input style="border-radius: 25px; background-color:gray; color:white;" id="searchpl" />
+  <div class="currentSong">
+    {#if !$showComponent}
+    <PlayBar />
+    {/if}
+</div>
   <div class="playLists">
 <PlayLists/>
   </div>
 </div>
 <style>
+    .currentSong{
+        font-weight: bold;
+        font-size: medium;
+        background-color: #446277;
+        border-radius: 20px;
+    }
   .fullbody {
       text-align: center;
       background-color: #111;

@@ -14,7 +14,6 @@ async function onComponentMount() {
 
 onMount(onComponentMount);
   </script>
-  <!-- Render your playlists data below -->
   {#each playlists as playlist (playlist.playListId)}
   <hr>
   <!-- svelte-ignore a11y-click-events-have-key-events -->

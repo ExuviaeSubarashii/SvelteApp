@@ -5,6 +5,14 @@
   import { SetCurrentSong, songProperties } from '../datas/listening';
 	import PlayBar from './PlayBar.svelte';
   let songs: any = []; 
+  import {showComponent} from '../datas/store'
+  var compshow=showComponent;
+
+  async function recreateComponent(songId:any) {
+    $showComponent = !$showComponent;
+    await SetCurrentSong(songId);
+    $showComponent = !$showComponent;
+  }
 
   const unsubscribe = exportedId.subscribe(async (id) => {
     try {
@@ -20,11 +28,10 @@
   });
 
   </script>
-  
   {#each songs as song}
   <div class="song-container" id="{song.songId}">
     {"title"}
-    <button on:click={()=>SetCurrentSong(song.songId)}>
+    <button on:click={()=>recreateComponent(song.songId)}>
       <p class="songName">{song.songName}</p>
     </button>
     {"Date Added"}
@@ -35,7 +42,6 @@
   </div>
 {/each}
 
-<PlayBar/>
 
   
   <style>
