@@ -12,40 +12,55 @@ const baseUrl = "http://localhost:5128/api";
 </script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+
 <div class="fullbody">
-  <button><i class='bx bx-left-arrow-alt'></i></button>
-  <button><i class='bx bx-right-arrow-alt'></i></button>
-  <p id="howgood">{howgood}</p>
-  {#if userTokenValue===null||userTokenValue===undefined}
-  <div class="logins">
-      <button><a href="login">Login</a></button>
-      <button><a href="register">Register</a></button>
-  </div>
-  {/if}
-  <label style="color:gray;"><a href="/"> <i class='bx bx-home'></i>Home</a></label>
-  <label style="color:gray;"><a href="/"><i class='bx bx-search'></i> Search</a></label>
-  <label style="color:gray;"><a href="/"><i class='bx bx-library'></i>Your Library</a></label>
-
-  <div>
-      <button style="text-align:center;" on:click={()=> ThePlayListThing("")}>Playlists</button>
-      <button><i class='bx bx-plus'></i></button>
+<div class="fixed-tops">
+    <button><i class='bx bx-left-arrow-alt'></i></button>
+    <button><i class='bx bx-right-arrow-alt'></i></button>
+    <p id="howgood">{howgood}</p>
+    {#if userTokenValue===null||userTokenValue===undefined}
+    <div class="logins">
+        <button><a href="login">Login</a></button>
+        <button><a href="register">Register</a></button>
     </div>
-   
-  <button on:click={()=> ThePlayListThing("Podcast")}>Podcasts & Shows</button>
-  <button on:click={()=> ThePlayListThing("Albums")}>Albums</button>
-
-  <button style="background-color:transparent; color:gray;"><i class='bx bx-search'></i></button>
-  <input style="border-radius: 25px; background-color:gray; color:white;" id="searchpl" />
-  <div class="currentSong">
-    {#if !$showComponent}
-    <PlayBar />
     {/if}
+    <label style="color:gray;"><a href="/"> <i class='bx bx-home'></i>Home</a></label>
+    <label style="color:gray;"><a href="/"><i class='bx bx-search'></i> Search</a></label>
+    <label style="color:gray;"><a href="/"><i class='bx bx-library'></i>Your Library</a></label>
+  
+    <div>
+        <button style="text-align:center;" on:click={()=> ThePlayListThing("")}>Playlists</button>
+        <button><i class='bx bx-plus'></i></button>
+      </div>
+     
+    <button on:click={()=> ThePlayListThing("Podcast")}>Podcasts & Shows</button>
+    <button on:click={()=> ThePlayListThing("Albums")}>Albums</button>
+  
+    <button style="background-color:transparent; color:gray;"><i class='bx bx-search'></i></button>
+    <input style="border-radius: 25px; background-color:gray; color:white;" id="searchpl" />
+    <div class="currentSong">
+      {#if !$showComponent}
+      <PlayBar />
+      {/if}
+  </div>
 </div>
   <div class="playLists">
 <PlayLists/>
   </div>
 </div>
 <style>
+::-webkit-scrollbar {
+    width: 15px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
     .currentSong{
         font-weight: bold;
         font-size: medium;
@@ -63,8 +78,8 @@ const baseUrl = "http://localhost:5128/api";
       padding: 20px;
       border-radius: 10px;
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 150;
+      left: 150;
   }
   
   button {
@@ -77,7 +92,7 @@ const baseUrl = "http://localhost:5128/api";
   }
   
   button:hover {
-      opacity: 0.8; /* Slight opacity on hover */
+      opacity: 0.8;
   }
   
   #howgood {

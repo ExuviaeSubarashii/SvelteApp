@@ -4,7 +4,6 @@
 	import { onMount } from 'svelte';
   import {duration} from '../datas/store'
   import CounterComponent from './CounterComponent.svelte';
-  import initialSeconds from './CounterComponent.svelte';
 
     var minutes:any;
     var remainingSeconds:any;
@@ -30,13 +29,22 @@
   {/await}
 {/if}
 
-<div >
+<div class="playBar">
+  <br>
   <p>{"Now Playing"}</p>
   <h2>{songProperties.songName}</h2>
   <h4>{songProperties.songArtist}</h4>
   {#if minutes !== undefined && remainingSeconds !== undefined}
   <CounterComponent initialSeconds={songProperties.duration}/>
   <p>{`${minutes}:${remainingSeconds}`}</p>
+  <br>
   {/if}
 </div>
 {/if}
+<style>
+  .playBar{
+background-color: black;
+border-radius: 20px;
+
+  }
+</style>
