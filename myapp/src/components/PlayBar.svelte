@@ -18,9 +18,8 @@
 }
   </script>
 {#if !songProperties}
-<div>
-  <h2>No Songs</h2>
-  <h4>No Songs</h4>
+<div class="playBar">
+  <h2>No Songs Playing</h2>
 </div>
 {:else}
 {#if !minutes && !remainingSeconds}
@@ -45,6 +44,5 @@
   .playBar{
 background-color: black;
 border-radius: 20px;
-
   }
 </style>

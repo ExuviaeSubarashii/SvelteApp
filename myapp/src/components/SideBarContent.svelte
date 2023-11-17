@@ -71,15 +71,16 @@ const baseUrl = "http://localhost:5128/api";
       text-align: center;
       background-color: #111;
       color: white;
-      resize: both;
+      resize: horizontal;
       overflow: auto;
-      height: 100%;
-      width: 300px;
       padding: 20px;
       border-radius: 10px;
-      position: fixed;
       top: 150;
       left: 150;
+      height: 100%;
+      width: 300px;
+      min-width: 150px;
+      max-width: 900px;
   }
   
   button {

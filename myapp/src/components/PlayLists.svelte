@@ -14,6 +14,7 @@ async function onComponentMount() {
 
 onMount(onComponentMount);
   </script>
+
   {#each playlists as playlist (playlist.playListId)}
   <hr>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -21,13 +22,12 @@ onMount(onComponentMount);
     <h3>
       <a class="playlistTitle" href="songs?id={encodeURIComponent(playlist.playListId)}" on:click={() => SetId(playlist.playListId)}>{playlist.playListTitle}</a>
     </h3>
-    <h4 class="playlistOwner">{playlist.playListOwner}</h4>
-    <p class="playlistType">{playlist.playListType}</p>
+    <h4 class="playlistOwner">{playlist.playListType} <i class='bx bxs-circle'></i> {playlist.playListOwner}</h4>
     <p class="playListCount">{playlist.playListCount} Songs</p>
   </div>
 {/each}
 <style>
-  .playlistSummary,a {
+  .playlistSummary a {
     text-decoration: none;
    font-family: Arial, Helvetica, sans-serif;
    background-color: transparent;
@@ -39,6 +39,9 @@ onMount(onComponentMount);
   }
   .playlistSummary p,h4{
     color:gray;
+  }
+  .playlistOwner i{
+    font-size: 10px;
   }
 </style>
 
