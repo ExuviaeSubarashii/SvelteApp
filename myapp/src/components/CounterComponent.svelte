@@ -2,14 +2,17 @@
 
 <script lang="ts">
     import { onMount } from 'svelte';
-    import {songState} from '../datas/store'
+    import {songState,nextQueueSong} from '../datas/store'
+    import { SetCurrentSong } from '../datas/listening';
     
     let currentState:any;
-
-// Subscribe to songState
+    let nextSong:any;
 songState.subscribe((state) => {
   currentState = state;
 });
+nextQueueSong.subscribe((state)=>{
+  nextSong=state;
+})
 
 
 export let initialSeconds = 0;
@@ -60,7 +63,7 @@ function toggleTimer() {
     {/if}
 
     <button><i class='bx bx-right-arrow-alt' ></i></button>
-    <button><i class='bx bx-repeat' ></i></button>
+    <button><a href="/queue"><i class='bx bx-repeat'></i></a></button>
   </div>
   
   <main>
