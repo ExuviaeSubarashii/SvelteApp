@@ -40,7 +40,7 @@
     border: 1px solid transparent;
     border-radius: 4px;
     outline: 0;
-    background-color: black;
+    background-color: #121212;
   }
   .queue-content{
     color: #f0f0f0;

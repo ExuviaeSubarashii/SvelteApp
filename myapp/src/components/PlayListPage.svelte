@@ -76,6 +76,16 @@
 .song-list-container {
   display: flex;
   flex-direction: column;
+  color:white;
+  width:1080px;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #121212;
+}
+.song-list-container p{
+  color:white;
 }
 
 .song-container {
@@ -89,7 +99,7 @@
   color: black;
   border: none;
   outline: none;
-  font-size: 20px;
+  font-size: 35px;
 }
 
 .song-details {
@@ -99,7 +109,7 @@
 }
 
 .detail {
-  margin-right: 20px; /* Adjust as needed for spacing between details */
+  margin-right: 20px;
 }
 
 .detail p {
