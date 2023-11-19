@@ -20,7 +20,7 @@ onMount(onComponentMount);
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div class="playlistSummary" tabindex="0" role="button" aria-pressed="false" id="{playlist.playListId}">
     <h3>
-      <a class="playlistTitle" href="songs?id={encodeURIComponent(playlist.playListId)}" on:click={() => SetId(playlist.playListId)}>{playlist.playListTitle}</a>
+      <a class="playlistTitle" href="/songs?id={encodeURIComponent(playlist.playListId)}" on:click={() => SetId(playlist.playListId)}>{playlist.playListTitle}</a>
     </h3>
     <h4 class="playlistOwner">{playlist.playListType} <i class='bx bxs-circle'></i> {playlist.playListOwner}</h4>
     <p class="playListCount">{playlist.playListCount} Songs</p>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from "$app/paths";
-	import userTokenValue, { usertoken } from "../datas/user";
+	import userTokenValue from "../datas/user";
 	import PlayLists from "./PlayLists.svelte";
     import GetUserPlayLists from '../components/PlayLists.svelte'
 	import { ThePlayListThing } from "../datas/playlistTypes";
@@ -74,7 +74,8 @@ const baseUrl = "http://localhost:5128/api";
       resize: horizontal;
       overflow: auto;
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 25px;
+      border-color: gray;
       top: 150;
       left: 150;
       height: 100%;
