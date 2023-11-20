@@ -2,7 +2,7 @@
 import SideBarContent from "../../../components/SideBarContent.svelte";
 import UserComponent from "../../../components/UserComponent.svelte";
 import ProfileComponent from "../../../components/ProfileComponent.svelte";
-	import { GetUserPropertiesById } from "../../../datas/userproperties";
+import { GetUserPropertiesById } from "../../../datas/userproperties";
 export let data;
 async function onComponentMount() {
     console.log(data.userdata);
@@ -10,7 +10,7 @@ async function onComponentMount() {
 }
 </script>
 <div class="profile-component-part">
-    <ProfileComponent bobid={data.userdata.id}/>
+    <ProfileComponent profileid={data.userdata.id}/>
 </div>
 <SideBarContent/>
 <UserComponent/>

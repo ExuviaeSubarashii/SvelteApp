@@ -1,14 +1,11 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { GetUserPropertiesById, userPropertiesbyid } from "../datas/userproperties";
-    import { page } from "$app/stores";
   
-    export let bobid: any;
+    export let profileid: any;
   
     async function onComponentMount() {
-      const id = $page.data.id;
-      console.log(id);
-      await GetUserPropertiesById(bobid);
+      await GetUserPropertiesById(profileid);
     }
   
     onMount(onComponentMount);
@@ -22,14 +19,8 @@
     <div class="profile-prop" role="row">
       <h4>Profile</h4>
       <h1 style="font-size: 25px;">{userName}</h1>
-      <p>
-        <a href="/user/follows">
-          {"Followers: " + followers}
-        </a>
-      </p>
-      <p>
-        <a href="/user/following">{"Following: " + following}</a>
-      </p>
+      <p><a href="/user/follows/{encodeURIComponent(profileid)}">{"Followers: " + followers}</a></p>
+      <p><a href="/user/following/{encodeURIComponent(profileid)}">{"Following: " + following}</a></p>
     </div>
   </div>
   
