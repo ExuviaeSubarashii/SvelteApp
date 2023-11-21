@@ -1,5 +1,17 @@
 const baseUrl = "http://localhost:5128/api";
+export var followers:any=[{
+  userName:"",
+  userId:"",
+  requestType:"Followers"
+}];
+export var following:any=[{
+  userName:"",
+  userId:"",
+  requestType:"Following"
+}];
 export async function GetFollowers(userId:any){
+  followers=[];
+  following=[];
     const request={
         userId:userId
     }
@@ -27,6 +39,8 @@ export async function GetFollowers(userId:any){
       }
 }
 export async function GetFollowings(userId:any){
+  followers=[];
+  following=[];
   const request={
     userId:userId
 }
@@ -50,13 +64,3 @@ export async function GetFollowings(userId:any){
         console.error('Error:', error);
       }
 }
-export let followers:any=[{
-    userName:"",
-    userId:"",
-    requestType:"Followers"
-  }];
-  export let following:any=[{
-    userName:"",
-    userId:"",
-    requestType:"Following"
-  }];

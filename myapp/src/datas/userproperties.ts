@@ -1,7 +1,18 @@
 import { writable } from "svelte/store";
 import userTokenValue from "./user";
 const baseUrl = "http://localhost:5128/api";
-
+export let userPropertiesbytoken:any={
+  userName:"",
+  following:"",
+  followers:"",
+  userId:""
+};
+export let userPropertiesbyid:any={
+  userName:"",
+  following:"",
+  followers:"",
+  userId:""
+};
 export async function GetUserPropertiesByToken(){
     const requestOptions = {
         method: 'POST',
@@ -20,7 +31,7 @@ export async function GetUserPropertiesByToken(){
           following: data.following,
           userId:data.userId
         };
-        console.log(`userPropertiesbytoken:`,userPropertiesbytoken);
+        console.log(`current user:`,userPropertiesbytoken);
       } catch (error) {
         console.error('Error:', error);
       }
@@ -49,15 +60,3 @@ export async function GetUserPropertiesById(userId:any){
         console.error('Error:', error);
       }
 }
-export let userPropertiesbytoken:any={
-  userName:"",
-  following:"",
-  followers:"",
-  userId:""
-};
-export let userPropertiesbyid:any={
-  userName:"",
-  following:"",
-  followers:"",
-  userId:""
-};

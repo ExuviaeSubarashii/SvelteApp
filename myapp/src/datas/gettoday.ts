@@ -1,4 +1,4 @@
-export let howgood = "";
+export var howgood = "";
 
 function GetToday() {
     var currentTime = new Date();

@@ -5,7 +5,7 @@
   import {SetId} from '.././datas/songs'
 import {GetPlaylistByTag} from '../datas/playlistTypes'
 import {GetUserPlayLists, exportedplaylists} from '../datas/playlists'
-let playlists: any[] = [];
+var playlists: any[] = [];
 
 async function onComponentMount() {
   await GetUserPlayLists();

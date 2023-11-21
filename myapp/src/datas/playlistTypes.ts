@@ -1,7 +1,7 @@
 export var playlistType:string;
 import {userTokenValue} from '../datas/user';
 const baseUrl = "http://localhost:5128/api";
-export let playlists:any = [];
+export var playlists:any = [];
 
 export function ThePlayListThing(playlistTypeInput:string){
 console.log(playlistTypeInput);

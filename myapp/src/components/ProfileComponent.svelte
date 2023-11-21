@@ -1,8 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { GetUserPropertiesById, userPropertiesbyid } from "../datas/userproperties";
-  
-    export let profileid: any;
+	  export let profileid:any;
   
     async function onComponentMount() {
       await GetUserPropertiesById(profileid);
@@ -18,12 +17,14 @@
   <div>
     <div class="profile-prop" role="row">
       <h4>Profile</h4>
+      {#await onComponentMount then}
       <div class="user-specific">
-      <h1 style="font-size: 25px;">{userName}</h1>
-      <minidenticon-svg style="height:10px; width:10px;" username="{userName}" saturation="60" lightness="50"></minidenticon-svg>
-        <p><a href="/user/follows/{encodeURIComponent(profileid)}">{"Followers: " + followers}</a></p>
-        <p><a href="/user/following/{encodeURIComponent(profileid)}">{"Following: " + following}</a></p>
+      <h1 style="font-size: 25px;">{userPropertiesbyid.userName}</h1>
+      <minidenticon-svg style="height:10px; width:10px;" username="{userPropertiesbyid.userName}" saturation="60" lightness="50"></minidenticon-svg>
+        <p><a href="/follows/{encodeURIComponent(profileid)}">{"Followers: " + userPropertiesbyid.followers}</a></p>
+        <p><a href="/following/{encodeURIComponent(profileid)}">{"Following: " + userPropertiesbyid.following}</a></p>
       </div>
+      {/await}
     </div>
   </div>
   

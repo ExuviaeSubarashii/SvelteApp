@@ -8,7 +8,7 @@
     var minutes:any;
     var remainingSeconds:any;
     var remaining:any;
-    let items:any;
+    var items:any;
 
     function convertSecondsToTime() {
    minutes = Math.floor(songProperties.duration / 60);

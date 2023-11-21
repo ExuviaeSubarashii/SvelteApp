@@ -18,4 +18,4 @@ export async function SetCurrentSong(songId:any){
         console.error('Error:', error);
       }
 }
-export let songProperties:any;
+export var songProperties:any;

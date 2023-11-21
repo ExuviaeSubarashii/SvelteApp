@@ -3,19 +3,21 @@ import { onMount } from 'svelte';
 import { minidenticon } from 'minidenticons'
 import {GetFollowers,followers} from '../datas/followmanager';
 
-export let followid:any;
+export var followid:any;
     console.log("follower data:"+followid);
     onMount(()=>GetFollowers(followid));
 </script>
 
 <div class="followers">
     <h1>{"Followers"}</h1>
+    {#await GetFollowers(followid) then}
     {#each followers as follow}
     <div class="user-specific">
-        <minidenticon-svg username="{follow.userName.trim()}"></minidenticon-svg>
-        <p><a href="/user/{follow.userId}">{follow.userName}</a></p>
+        <minidenticon-svg username={follow.userName.trim()}></minidenticon-svg>
+        <p><a href="/user/{follow.userId}" target="_blank">{follow.userName}</a></p>
     </div>
     {/each}
+    {/await}
 </div>
 <style>
 .followers{

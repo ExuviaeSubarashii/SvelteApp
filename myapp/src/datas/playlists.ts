@@ -26,4 +26,4 @@ const baseUrl = "http://localhost:5128/api";
         console.error('Error:', error);
       }
     }
-export let exportedplaylists:any = [];
+export var exportedplaylists:any = [];

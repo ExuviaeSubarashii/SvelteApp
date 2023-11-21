@@ -5,8 +5,8 @@
     import {songState,nextQueueSong} from '../datas/store'
     import { SetCurrentSong } from '../datas/listening';
     
-    let currentState:any;
-    let nextSong:any;
+    var currentState:any;
+    var nextSong:any;
 songState.subscribe((state) => {
   currentState = state;
 });
@@ -15,14 +15,13 @@ nextQueueSong.subscribe((state)=>{
 })
 
 
-export let initialSeconds = 0;
-export let targetDuration = 0;
+export var initialSeconds = 0;
+export var targetDuration = 0;
 
-let elapsedSeconds = 0;
-let minutes = Math.floor(elapsedSeconds / 60);
-let remainingSeconds = elapsedSeconds % 60;
-
-let isRunning = true; // Initially, the timer is running
+var elapsedSeconds = 0;
+var minutes = Math.floor(elapsedSeconds / 60);
+var remainingSeconds = elapsedSeconds % 60;
+var isRunning = true; // Initially, the timer is running
 
 function updateCounter() {
   if (isRunning && elapsedSeconds < targetDuration) {

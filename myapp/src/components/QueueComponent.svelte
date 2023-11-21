@@ -1,6 +1,6 @@
 <script lang="ts">
   import { songQueue } from '../datas/store';
-  let queueArray:any=[];
+  var queueArray:any=[];
   songQueue.subscribe((queue) => {
     queueArray = queue;
 });

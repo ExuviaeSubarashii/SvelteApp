@@ -6,7 +6,7 @@
 
     import {userTokenValue} from '../datas/user';
   const baseUrl = "http://localhost:5128/api";
-  let playlist:any = [];
+  var playlist:any = [];
 
   async function GetUserSuggestedPlayLists() {
 

@@ -2,11 +2,11 @@
 import { writable, type Writable } from 'svelte/store';
 
 export var exportedId = writable('');
-let showComponent = writable(false);
-let duration=writable(0);
-let songState=writable('Paused');
+var showComponent = writable(false);
+var duration=writable(0);
+var songState=writable('Paused');
+var nextQueueSong=writable(0);
 const songQueue=writable([]);
-let nextQueueSong=writable(0);
 
 
 export { showComponent,duration,songState,songQueue,nextQueueSong};

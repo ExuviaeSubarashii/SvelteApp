@@ -1,8 +1,11 @@
-export async function load({params}){
-    const id=params.id;
+// Your SvelteKit page (e.g., user/[id].svelte)
+export async function load({ params }) {
+    const id = params.id;
     return {
-        userdata:{
-            id
+        props: {
+            userdata: {
+                id
+            }
         }
-    }
+    };
 }

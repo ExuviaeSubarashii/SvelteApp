@@ -4,7 +4,7 @@
   import { exportedId,songQueue } from '../datas/store';
   import { SetCurrentSong, songProperties } from '../datas/listening';
 	import PlayBar from './PlayBar.svelte';
-  let songs: any = []; 
+  var songs: any = []; 
   import {showComponent} from '../datas/store'
   var compshow=showComponent;
   var queueArray:any=[];
