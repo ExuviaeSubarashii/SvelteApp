@@ -18,9 +18,12 @@
   <div>
     <div class="profile-prop" role="row">
       <h4>Profile</h4>
+      <div class="user-specific">
       <h1 style="font-size: 25px;">{userName}</h1>
-      <p><a href="/user/follows/{encodeURIComponent(profileid)}">{"Followers: " + followers}</a></p>
-      <p><a href="/user/following/{encodeURIComponent(profileid)}">{"Following: " + following}</a></p>
+      <minidenticon-svg style="height:10px; width:10px;" username="{userName}" saturation="60" lightness="50"></minidenticon-svg>
+        <p><a href="/user/follows/{encodeURIComponent(profileid)}">{"Followers: " + followers}</a></p>
+        <p><a href="/user/following/{encodeURIComponent(profileid)}">{"Following: " + following}</a></p>
+      </div>
     </div>
   </div>
   
@@ -31,8 +34,7 @@
       top: 150px;
       left: 950px;
       background-color: gray;
-      width: 500px;
-      height: 350px;
+      align-items: center;
     }
   
     .profile-prop p {
@@ -53,5 +55,12 @@
       text-decoration: none;
       color: lightgray;
     }
+    .user-specific{
+    background-color: #44444411;
+    width: 350px;
+    white-space: nowrap;
+    cursor: pointer;
+    left: 100px;
+}
   </style>
   
