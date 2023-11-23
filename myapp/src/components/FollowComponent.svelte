@@ -13,7 +13,7 @@ export var followid:any;
     {#await GetFollowers(followid) then}
     {#each followers as follow}
     <div class="user-specific">
-        <minidenticon-svg username={follow.userName.trim()}></minidenticon-svg>
+        <minidenticon-svg username={follow.userName}></minidenticon-svg>
         <p><a href="/user/{follow.userId}" target="_blank">{follow.userName}</a></p>
     </div>
     {/each}

@@ -10,8 +10,6 @@ export var following:any=[{
   requestType:"Following"
 }];
 export async function GetFollowers(userId:any){
-  followers=[];
-  following=[];
     const request={
         userId:userId
     }
@@ -39,8 +37,6 @@ export async function GetFollowers(userId:any){
       }
 }
 export async function GetFollowings(userId:any){
-  followers=[];
-  following=[];
   const request={
     userId:userId
 }
@@ -55,10 +51,13 @@ export async function GetFollowings(userId:any){
           throw new Error(response.statusText);
         }
         const data = await response.json();
-        following = {
-          userName: data.userName,
-          userId:data.userId
-        };
+        following = data.map((following: { userName: any; userId: any; }) => {
+          return {
+            userName: following.userName,
+            userId: following.userId,
+            requestType: "Following"
+          };
+        });
         console.log(`following:`,following);
       } catch (error) {
         console.error('Error:', error);

@@ -2,11 +2,11 @@
 	import { base } from "$app/paths";
 	import userTokenValue from "../datas/user";
 	import PlayLists from "./PlayLists.svelte";
-    import GetUserPlayLists from '../components/PlayLists.svelte'
 	import { ThePlayListThing } from "../datas/playlistTypes";
     import { howgood } from "../datas/gettoday";
     import PlayBar from "../components/PlayBar.svelte";
     import {showComponent} from '../datas/store'
+	import CreatePlaylistComponent from "./CreatePlaylistComponent.svelte";
 
 const baseUrl = "http://localhost:5128/api";
 </script>
@@ -30,7 +30,7 @@ const baseUrl = "http://localhost:5128/api";
   
     <div>
         <button style="text-align:center;" on:click={()=> ThePlayListThing("")}>Playlists</button>
-        <button><i class='bx bx-plus'></i></button>
+        <CreatePlaylistComponent/>
       </div>
      
     <button on:click={()=> ThePlayListThing("Podcast")}>Podcasts & Shows</button>
