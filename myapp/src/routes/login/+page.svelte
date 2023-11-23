@@ -1,6 +1,7 @@
 <script lang="ts">
 import SideBarContent from "../../components/SideBarContent.svelte";
-const baseUrl = "http://localhost:5128/api";
+import { baseUrl } from "../../datas/store";
+
 
 
 var email="";

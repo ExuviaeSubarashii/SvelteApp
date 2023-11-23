@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
 import userTokenValue from "./user";
-const baseUrl = "http://localhost:5128/api";
+import { baseUrl } from "../datas/store";
+
 export let userPropertiesbytoken:any={
   userName:"",
   following:"",

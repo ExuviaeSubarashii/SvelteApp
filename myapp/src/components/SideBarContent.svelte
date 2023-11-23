@@ -7,8 +7,7 @@
     import PlayBar from "../components/PlayBar.svelte";
     import {showComponent} from '../datas/store'
 	import CreatePlaylistComponent from "./CreatePlaylistComponent.svelte";
-
-const baseUrl = "http://localhost:5128/api";
+    import { baseUrl } from "../datas/store";
 </script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 

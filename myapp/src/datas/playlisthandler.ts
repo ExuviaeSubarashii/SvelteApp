@@ -1,5 +1,6 @@
 import userTokenValue from "./user";
-const baseUrl = "http://localhost:5128/api";
+import { baseUrl } from "../datas/store";
+
 export var exportplaylists:any[]=[];
 export async function CreatePlaylist(){
     const body={

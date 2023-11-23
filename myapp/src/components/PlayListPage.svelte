@@ -36,7 +36,7 @@
 
 <div class="song-list-container" role="row" aria-rowindex="1">
   {#if songs.length>0}
-  {#each songs as song (song.songId)}
+  {#each songs as song}
   <div class="song-container" id="{song.songId}">
     <button class="play-button" on:click={() => recreateComponent(song.songId)}>
       <i class='bx bx-play-circle'></i>

@@ -1,7 +1,8 @@
 import {userTokenValue} from '../datas/user';
 import playlistType from "../components/SideBarContent.svelte";
 import { onMount } from 'svelte';
-const baseUrl = "http://localhost:5128/api";
+import { baseUrl } from "../datas/store";
+
 
     export async function GetUserPlayLists() {
         

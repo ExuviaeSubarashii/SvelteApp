@@ -1,9 +1,10 @@
   
   import { exportedId } from '../datas/store';
+  import { baseUrl } from "../datas/store";
   
   export async function GetSongs(id:string) {
 
-    const baseUrl = "http://localhost:5128/api";
+
     const requestOptions = {
       method: 'POST',
       body: JSON.stringify(id),

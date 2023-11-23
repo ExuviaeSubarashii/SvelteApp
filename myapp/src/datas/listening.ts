@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost:5128/api";
+import { baseUrl } from "../datas/store";
+
 export async function SetCurrentSong(songId:any){
     console.log(songId);
     const requestOptions = {

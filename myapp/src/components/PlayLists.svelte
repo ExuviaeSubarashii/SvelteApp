@@ -2,25 +2,39 @@
     import { onMount } from 'svelte';
   import {SetId} from '.././datas/songs'
 import {GetUserPlayLists, exportedplaylists} from '../datas/playlists'
+	import PlaylistOptions from './PlaylistOptions.svelte';
 var playlists: any[] = [];
+
+var selectedPlaylist: any = null;
+
+  export let propertyState = false;
+
+  function ChangeState(playlist: any) {
+    selectedPlaylist = playlist;
+    propertyState = !propertyState;
+    console.log(propertyState);
+  }
+
 
 async function onComponentMount() {
   await GetUserPlayLists();
   playlists = exportedplaylists;
 }
-
 onMount(onComponentMount);
   </script>
   <div class="scrollable-container">
   {#if playlists.length>0}
   {#each playlists as playlist (playlist.playListId)}
   <hr>
-  <div class="playlistSummary" tabindex="0" role="button" aria-pressed="false" id="{playlist.playListId}">
+  <div class="playlistSummary" tabindex="0" role="button" aria-pressed="false" id="{playlist.playListId}" on:contextmenu={() => ChangeState(playlist)}>
     <h3>
       <a class="playlistTitle" style="text-decoration: none;" href="/songs?id={encodeURIComponent(playlist.playListId)}" on:click={() => SetId(playlist.playListId)}>{playlist.playListTitle}</a>
     </h3>
     <h4 class="playlistOwner">{playlist.playListType} <i class='bx bxs-circle'></i> {playlist.playListOwner}</h4>
     <p class="playListCount">{playlist.playListCount} Songs</p>
+      {#if propertyState}
+        <PlaylistOptions />
+      {/if}
   </div>
 {/each}
     {:else}

@@ -7,6 +7,5 @@ var duration=writable(0);
 var songState=writable('Paused');
 var nextQueueSong=writable(0);
 const songQueue=writable([]);
-
-
-export { showComponent,duration,songState,songQueue,nextQueueSong};
+const baseUrl = "http://localhost:5128/api";
+export { showComponent,duration,songState,songQueue,nextQueueSong,baseUrl};
