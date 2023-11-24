@@ -7,16 +7,15 @@ export async function SetCurrentSong(songId:any){
         body: JSON.stringify(songId),
         headers: { 'Content-Type': 'application/json' },
       };
-      try {
+      try 
+      {
         const response = await fetch(`${baseUrl}/Songs/SetCurrentSong`, requestOptions);
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
+        if (!response.ok) {throw new Error(response.statusText);}
         const data = await response.json();
         songProperties = data;
         console.log(`songContents:`,songProperties);
-      } catch (error) {
-        console.error('Error:', error);
-      }
+      } 
+      catch (error) 
+      {console.error('Error:', error);}
 }
 export var songProperties:any;

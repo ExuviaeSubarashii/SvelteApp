@@ -2,9 +2,9 @@
     import { onMount } from 'svelte';
   import {SetId} from '.././datas/songs'
 import {GetUserPlayLists, exportedplaylists} from '../datas/playlists'
-	import PlaylistOptions from './PlaylistOptions.svelte';
+import PlaylistOptions from './PlaylistOptions.svelte';
 var playlists: any[] = [];
-
+var userprops:any=[];
 var selectedPlaylist: any = null;
 
   export let propertyState = false;
@@ -15,8 +15,6 @@ function ChangeState(playlist: any) {
   propertyState = !propertyState;
   console.log(propertyState);
 }
-
-
 async function onComponentMount() {
   await GetUserPlayLists();
   playlists = exportedplaylists;
@@ -31,12 +29,14 @@ onMount(onComponentMount);
     <h3>
       <a class="playlistTitle" style="text-decoration: none;" href="/songs?id={encodeURIComponent(playlist.playListId)}" on:click={() => SetId(playlist.playListId)}>{playlist.playListTitle}</a>
     </h3>
-    <h4 class="playlistOwner">{playlist.playListType} <i class='bx bxs-circle'></i> {playlist.playListOwner}</h4>
+    <h4 class="playlistOwner" id="{playlist.playListOwnerId}">{playlist.playListType}<i class='bx bxs-circle'></i> {playlist.playListOwner}</h4>
     <p class="playListCount">{playlist.playListCount} Songs</p>
     <button on:click={() => ChangeState(playlist)} class="showproperties"><i class='bx bx-dots-horizontal-rounded'></i></button>
+
       {#if propertyState && selectedPlaylist === playlist}
-        <PlaylistOptions/>
+        <PlaylistOptions playlistId={playlist.playListId} playlistOwner={playlist.playListOwnerId}/>
       {/if}
+
   </div>
 {/each}
     {:else}
@@ -60,7 +60,7 @@ onMount(onComponentMount);
     color:black;
   }
   .scrollable-container { 
-    max-height: 750px;
+    max-height: 550px;
     overflow-y: auto;
   }
   .playlistSummary a {

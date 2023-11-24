@@ -1,5 +1,4 @@
-import { writable } from "svelte/store";
-import userTokenValue from "./user";
+import userTokenValue, { userIdValue } from "./user";
 import { baseUrl } from "../datas/store";
 
 export let userPropertiesbytoken:any={
@@ -32,6 +31,7 @@ export async function GetUserPropertiesByToken(){
           following: data.following,
           userId:data.userId
         };
+        console.log("useridvaluefromts:"+userIdValue)
         console.log(`current user:`,userPropertiesbytoken);
       } catch (error) {
         console.error('Error:', error);

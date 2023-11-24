@@ -80,7 +80,7 @@
       height: 100%;
       width: 300px;
       min-width: 150px;
-      max-width: 900px;
+      max-width: 780px;
   }
   
   button {
