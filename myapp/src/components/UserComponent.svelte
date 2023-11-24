@@ -2,12 +2,14 @@
 	import { onMount } from "svelte";
 import userTokenValue from "../datas/user";
 import { GetUserPropertiesByToken, userPropertiesbytoken } from "../datas/userproperties";
+var userprops:any=[];
 let isToggled: any=false;
 function handleClick() {
     isToggled = !isToggled;
   }
 async function onComponentMount() {
   await GetUserPropertiesByToken();
+  userprops=userPropertiesbytoken;
 }
 
 onMount(onComponentMount);
@@ -20,7 +22,7 @@ onMount(onComponentMount);
         <span>Hover me</span>
         <div class="dropdown-content">
             <a href="/user/account">Account <i class='bx bxs-right-top-arrow-circle'></i></a>
-            <a href="/user/{encodeURIComponent(userPropertiesbytoken.userId)}">Profile</a>
+            <a href="/user/{encodeURIComponent(userprops.userId)}">Profile</a>
             <span>Private Session</span>
             <a href="/user/settings">Settings</a>
             <hr>

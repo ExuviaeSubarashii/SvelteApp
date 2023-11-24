@@ -9,7 +9,7 @@ var selectedPlaylist: any = null;
 
   export let propertyState = false;
 
-  function ChangeState(playlist: any) {
+  function ShowProperties(playlist: any) {
     selectedPlaylist = playlist;
     propertyState = !propertyState;
     console.log(propertyState);
@@ -26,14 +26,15 @@ onMount(onComponentMount);
   {#if playlists.length>0}
   {#each playlists as playlist (playlist.playListId)}
   <hr>
-  <div class="playlistSummary" tabindex="0" role="button" aria-pressed="false" id="{playlist.playListId}" on:contextmenu={() => ChangeState(playlist)}>
+  <div class="playlistSummary" tabindex="0" role="button" aria-pressed="false" id="{playlist.playListId}">
     <h3>
       <a class="playlistTitle" style="text-decoration: none;" href="/songs?id={encodeURIComponent(playlist.playListId)}" on:click={() => SetId(playlist.playListId)}>{playlist.playListTitle}</a>
     </h3>
     <h4 class="playlistOwner">{playlist.playListType} <i class='bx bxs-circle'></i> {playlist.playListOwner}</h4>
     <p class="playListCount">{playlist.playListCount} Songs</p>
+    <button on:click={() => ShowProperties(playlist)} class="showproperties"><i class='bx bx-dots-horizontal-rounded'></i></button>
       {#if propertyState}
-        <PlaylistOptions />
+        <PlaylistOptions/>
       {/if}
   </div>
 {/each}
@@ -46,6 +47,17 @@ onMount(onComponentMount);
     {/if}
   </div>
 <style>
+  .showproperties :hover{
+    color: gray;
+  }
+  .showproperties{
+    left:150px;
+    font-size: 35px; 
+    border-radius: 20px;
+    text-align: center;
+    background-color: lightgray;
+    color:black;
+  }
   .scrollable-container { 
     max-height: 750px;
     overflow-y: auto;

@@ -2,16 +2,17 @@
     import { onMount } from "svelte";
     import { GetUserPropertiesById, userPropertiesbyid } from "../datas/userproperties";
 	  export let profileid:any;
-  
+    var userprops:any=[];
     async function onComponentMount() {
       await GetUserPropertiesById(profileid);
+      userprops=userPropertiesbyid;
     }
   
     onMount(onComponentMount);
   
-    $: userName = userPropertiesbyid.userName;
-    $: followers = userPropertiesbyid.followers;
-    $: following = userPropertiesbyid.following;
+    $: userName = userprops.userName;
+    $: followers = userprops.followers;
+    $: following = userprops.following;
   </script>
   
   <div>
@@ -19,10 +20,10 @@
       <h4>Profile</h4>
       {#await onComponentMount then}
       <div class="user-specific">
-      <h1 style="font-size: 25px;">{userPropertiesbyid.userName}</h1>
-      <minidenticon-svg style="height:10px; width:10px;" username="{userPropertiesbyid.userName}" saturation="60" lightness="50"></minidenticon-svg>
-        <p><a href="/follows/{encodeURIComponent(profileid)}">{"Followers: " + userPropertiesbyid.followers}</a></p>
-        <p><a href="/following/{encodeURIComponent(profileid)}">{"Following: " + userPropertiesbyid.following}</a></p>
+      <h1 style="font-size: 25px;">{userName}</h1>
+      <minidenticon-svg style="height:10px; width:10px;" username="{userName}" saturation="60" lightness="50"></minidenticon-svg>
+        <p><a href="/follows/{encodeURIComponent(profileid)}">{"Followers: " + followers}</a></p>
+        <p><a href="/following/{encodeURIComponent(profileid)}">{"Following: " + following}</a></p>
       </div>
       {/await}
     </div>

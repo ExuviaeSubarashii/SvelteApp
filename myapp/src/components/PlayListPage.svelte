@@ -4,11 +4,10 @@
   import { exportedId,songQueue } from '../datas/store';
   import { SetCurrentSong, songProperties } from '../datas/listening';
 	import PlayBar from './PlayBar.svelte';
-  var songs: any = []; 
   import {showComponent} from '../datas/store'
+  var songs: any = []; 
   var queueArray:any=[];
-  var compshow=showComponent;
-  async function recreateComponent(songId:any) {
+  export async function recreateComponent(songId:any) {
     $showComponent = !$showComponent;
     await SetCurrentSong(songId);
     $showComponent = !$showComponent;

@@ -34,7 +34,7 @@
      
     <button on:click={()=> ThePlayListThing("Podcast")}>Podcasts & Shows</button>
     <button on:click={()=> ThePlayListThing("Albums")}>Albums</button>
-  
+    <button><a style="text-decoration: none; color:white" href="/findsong">Find Songs</a></button>
     <button style="background-color:transparent; color:gray;"><i class='bx bx-search'></i></button>
     <input style="border-radius: 25px; background-color:gray; color:white;" id="searchpl" />
     <div class="currentSong">
