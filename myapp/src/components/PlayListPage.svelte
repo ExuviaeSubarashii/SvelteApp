@@ -83,12 +83,15 @@
   display: flex;
   flex-direction: column;
   color:white;
-  width:1080px;
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #121212;
+
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: gray;
+  border-radius: 25px;
+  padding: 15px;
+  align-items: center;
 }
 .song-list-container p{
   color:white;
@@ -98,6 +101,8 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  background-color: gray;
+  
 }
 
 .play-button {

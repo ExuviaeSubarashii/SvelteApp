@@ -8,12 +8,13 @@ var playlists: any[] = [];
 var selectedPlaylist: any = null;
 
   export let propertyState = false;
+  var selectedPlaylist: any = null;
 
-  function ShowProperties(playlist: any) {
-    selectedPlaylist = playlist;
-    propertyState = !propertyState;
-    console.log(propertyState);
-  }
+function ChangeState(playlist: any) {
+  selectedPlaylist = playlist;
+  propertyState = !propertyState;
+  console.log(propertyState);
+}
 
 
 async function onComponentMount() {
@@ -32,8 +33,8 @@ onMount(onComponentMount);
     </h3>
     <h4 class="playlistOwner">{playlist.playListType} <i class='bx bxs-circle'></i> {playlist.playListOwner}</h4>
     <p class="playListCount">{playlist.playListCount} Songs</p>
-    <button on:click={() => ShowProperties(playlist)} class="showproperties"><i class='bx bx-dots-horizontal-rounded'></i></button>
-      {#if propertyState}
+    <button on:click={() => ChangeState(playlist)} class="showproperties"><i class='bx bx-dots-horizontal-rounded'></i></button>
+      {#if propertyState && selectedPlaylist === playlist}
         <PlaylistOptions/>
       {/if}
   </div>

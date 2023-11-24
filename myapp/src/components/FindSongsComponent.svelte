@@ -42,11 +42,6 @@
         <p class="label">Album Name:</p>
         <p class="data">{song.albumName}</p>
       </div>
-      
-      <div class="detail">
-        <p class="label">Date Added:</p>
-        <p class="data">{song.dateAdded}</p>
-      </div>
     </div>
   </div>
   {/each}
@@ -61,15 +56,18 @@
   
   <style>
     .song-list-container {
+
       display: flex;
       flex-direction: column;
       color:white;
-      width:1080px;
-                position: absolute;
-                top: 30%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background-color: #121212;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: gray;
+      border-radius: 25px;
+      padding: 15px;
+      align-items: center;
     }
     .song-list-container p{
       color:white;
