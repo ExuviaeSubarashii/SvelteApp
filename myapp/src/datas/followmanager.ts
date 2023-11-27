@@ -10,7 +10,7 @@ export var following:any=[{
   userId:"",
   requestType:"Following"
 }];
-export async function GetFollowers(userId:any){
+export async function GetFollowers(userId?:any){
     const request={
         userId:userId
     }

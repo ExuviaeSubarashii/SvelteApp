@@ -3,6 +3,7 @@
 	import { FindSongs,songs } from "../datas/findsongs";
   import {showComponent} from '../datas/store'
 	import { SetCurrentSong } from "../datas/listening";
+	import SongPropertiesComponent from "./SongPropertiesComponent.svelte";
   let songstore: any[] = [];
   async function recreateComponent(songId:any) {
     $showComponent = !$showComponent;
@@ -16,12 +17,13 @@
   });
     </script>
 <div class="song-list-container" role="row" aria-rowindex="1">
-  {#if songs.length>0}
+  {#if songstore.length>0}
   {#each songstore as song}
   <div class="song-container" id="{song.songId}">
     <button class="play-button" on:click={() => recreateComponent(song.songId)}>
       <i class='bx bx-play-circle'></i>
     </button>
+    <SongPropertiesComponent songId={song.songId}/>
     <div class="song-details">
       <div class="detail">
         <p class="label">Song Name:</p>

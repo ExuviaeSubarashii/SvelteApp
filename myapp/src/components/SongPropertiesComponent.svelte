@@ -1,0 +1,38 @@
+<script lang="ts">
+	import { UpdatePlayListContents } from '../datas/playlisthandler';
+    import {exportedplaylists} from '../datas/playlists'
+    let showprops=false;
+    let popupplaylists=false;
+    export let songId:string;
+    var playlists: any[] = [];
+function ShowProperties(){
+    showprops=!showprops;
+    if(popupplaylists){
+    popupplaylists=!popupplaylists;
+    }
+}
+function PopUpPlaylists(){
+    popupplaylists=!popupplaylists;
+    playlists=exportedplaylists;
+}
+
+</script>
+
+<div class="propr">
+    <button on:click={ShowProperties}>TripleDot</button>
+    {#if showprops}
+    <button on:click={PopUpPlaylists}>Add to Playlist <i class='bx bxs-right-arrow'></i></button>
+    {/if}
+    <div>
+    </div>
+{#if popupplaylists}
+    {#each playlists as playlist}
+    <button on:click={()=>UpdatePlayListContents(playlist.playListId,songId)}>
+        <p>{playlist.playListTitle}</p>
+    </button>
+    {/each}
+{/if}
+
+</div>
+<style>
+</style>

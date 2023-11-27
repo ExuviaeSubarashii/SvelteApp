@@ -30,7 +30,6 @@ onMount(onComponentMount);
       <a class="playlistTitle" style="text-decoration: none;" href="/songs?id={encodeURIComponent(playlist.playListId)}" on:click={() => SetId(playlist.playListId)}>{playlist.playListTitle}</a>
     </h3>
     <h4 class="playlistOwner" id="{playlist.playListOwnerId}">{playlist.playListType}<i class='bx bxs-circle'></i> {playlist.playListOwner}</h4>
-    <p class="playListCount">{playlist.playListCount} Songs</p>
     <button on:click={() => ChangeState(playlist)} class="showproperties"><i class='bx bx-dots-horizontal-rounded'></i></button>
 
       {#if propertyState && selectedPlaylist === playlist}

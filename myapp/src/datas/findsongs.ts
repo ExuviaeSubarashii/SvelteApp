@@ -7,7 +7,8 @@ export interface ISongInterface{
     songId:number;
     songName:string;
 }
-export let songs:ISongInterface[];
+// export let songs:ISongInterface[];
+export let songs:any=[];
 export async function FindSongs(){
     const requestOptions = {
         method: 'GET',
