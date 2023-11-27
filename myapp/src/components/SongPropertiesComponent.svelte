@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { UpdatePlayListContents } from '../datas/playlisthandler';
     import {exportedplaylists} from '../datas/playlists'
+	import { userIdValue } from '../datas/user';
     let showprops=false;
     let popupplaylists=false;
     export let songId:string;
-    var playlists: any[] = [];
+    var playlists:any= [];
 function ShowProperties(){
     showprops=!showprops;
     if(popupplaylists){
@@ -14,22 +15,30 @@ function ShowProperties(){
 function PopUpPlaylists(){
     popupplaylists=!popupplaylists;
     playlists=exportedplaylists;
+    console.log(playlists);
+    console.log(userIdValue);
 }
 
 </script>
 
 <div class="propr">
     <button on:click={ShowProperties}>TripleDot</button>
-    {#if showprops}
+    {#if showprops }
     <button on:click={PopUpPlaylists}>Add to Playlist <i class='bx bxs-right-arrow'></i></button>
     {/if}
     <div>
     </div>
 {#if popupplaylists}
     {#each playlists as playlist}
+
+    {#if playlist.playListOwnerId==userIdValue}
+
     <button on:click={()=>UpdatePlayListContents(playlist.playListId,songId)}>
         <p>{playlist.playListTitle}</p>
     </button>
+
+    {/if}
+    
     {/each}
 {/if}
 

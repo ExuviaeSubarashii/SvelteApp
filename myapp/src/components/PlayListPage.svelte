@@ -80,14 +80,16 @@
 
   <style>
 .song-list-container {
+  max-height: 950px;
+    overflow-y: auto;
   display: flex;
   flex-direction: column;
   color:white;
 
   position: absolute;
-  top: 30%;
+  top: 0%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   background-color: gray;
   border-radius: 25px;
   padding: 15px;
