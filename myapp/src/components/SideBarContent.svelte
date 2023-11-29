@@ -5,7 +5,7 @@
     import {showComponent} from '../datas/store'
 	import CreatePlaylistComponent from "./CreatePlaylistComponent.svelte";
 	import PlayLists from "./PlayLists.svelte";
-	import { PlaylistSearch, exportedplaylists } from "../datas/playlists";
+	import { GetPodcasts, GetUserPlayLists, PlaylistSearch, exportedplaylists } from "../datas/playlists";
     let plname="";
 </script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -29,9 +29,12 @@
     <label style="color:gray;"><a href="/"> <i class='bx bx-home'></i>Home</a></label>
     <label style="color:gray;"><a href="/"><i class='bx bx-search'></i> Search</a></label>
     <label style="color:gray;"><a href="/"><i class='bx bx-library'></i>Your Library</a></label>
-    <div>
+    <div style="display:flex;">
         <CreatePlaylistComponent/>
+      <button on:click={()=>GetUserPlayLists()}><i class='bx bx-refresh'></i></button>
       </div>
+      <button on:click={()=> GetPodcasts("Podcast")}>Podcasts & Shows</button>
+      <button on:click={()=> GetPodcasts("Albums")}>Albums</button>
     <button><a style="text-decoration: none; color:white" href="/findsong">Find Songs</a></button>
     <button style="background-color:transparent; color:gray;"><i class='bx bx-search'></i></button>
     <input style="border-radius: 25px; background-color:gray; color:white;" id="searchpl" type="text" bind:value={plname} on:input={()=>PlaylistSearch(plname)}/>

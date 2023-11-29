@@ -49,4 +49,27 @@ import { writable } from 'svelte/store';
         }
       
     }
+    export async function GetPodcasts(playlistType:string){
+
+      const body={
+        userToken:userTokenValue,
+        playlistType:playlistType
+      }
+      const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: { 'Content-Type': 'application/json' },
+      };
+      try {
+        const response = await fetch(`${baseUrl}/Playlist/GetUserPlayLists`, requestOptions);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const data = await response.json();
+        exportedplaylists.set(data);
+        console.log("Sidebar:",data);        
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
     export const exportedplaylists = writable([]);
