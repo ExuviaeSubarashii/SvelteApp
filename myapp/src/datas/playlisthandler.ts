@@ -1,6 +1,5 @@
 import userTokenValue from "./user";
 import { baseUrl } from "../datas/store";
-import { json } from "@sveltejs/kit";
 
 export var exportplaylists: any[] = [];
 export async function CreatePlaylist() {

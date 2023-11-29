@@ -2,6 +2,7 @@
 	import { onMount } from "svelte";
 import userTokenValue from "../datas/user";
 import { GetUserPropertiesByToken, userPropertiesbytoken } from "../datas/userproperties";
+	import { LogOut } from "../datas/useractivities";
 var userprops:any=[];
 let isToggled: any=false;
 function handleClick() {
@@ -26,7 +27,7 @@ onMount(onComponentMount);
             <span>Private Session</span>
             <a href="/user/settings">Settings</a>
             <hr>
-            <a href="/">Log out</a>
+            <a href="/" on:click={LogOut}>Log out</a>
         </div>
     </div>
 </div>

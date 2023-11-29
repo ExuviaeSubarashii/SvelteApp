@@ -1,48 +1,26 @@
 <script lang="ts">
-import SideBarContent from "../../components/SideBarContent.svelte";
-import { baseUrl } from "../../datas/store";
-
-
-
+import { Login } from "../../datas/useractivities";
 var email="";
 var password="";
-function Login(){
-    const user = {
-    userEmail: email,
-    password: password
-};
-
-const requestOptions = {
-    method: 'POST',
-    body: JSON.stringify(user),
-    headers: {
-        'Content-Type': 'application/json'
-    }
-};
-fetch(`${baseUrl}/User/Login`, requestOptions)
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        }
-        else {
-            throw new Error(response.statusText);
-        }
-    })
-    .then(data => {
-        localStorage.setItem('userId',data.id);
-        localStorage.setItem('usertoken', data.userToken);
-        localStorage.setItem('userEmail', data.userEmail);
-        localStorage.setItem('userName', data.userName);
-        localStorage.setItem('isLoggedIn', "true");
-    })
-    .catch(error => {
-        console.error('Error occurred while sending the request:', error);
-    });
-}
 </script>
 
-<div>
+<div class="loginpage">
     <input bind:value={email} placeholder="Email">
     <input bind:value={password} placeholder="Password">
-    <button on:click={Login}>Login</button>
+    <button on:click={()=>{
+        if(email&&password){
+            Login(email,password);
+        }
+        else{
+            console.log("Email and password are required");
+        }
+    }}
+        >Login</button>
 </div>
+<style>
+    .loginpage{
+        position: fixed;
+    top: 50%;
+    right: 40%;
+    }
+</style>

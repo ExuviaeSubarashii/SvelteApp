@@ -3,14 +3,18 @@
     import SideBarContent from "../components/SideBarContent.svelte";
 	import SuggestedPlayLists from "../components/SuggestedPlayLists.svelte";
 	import UserComponent from "../components/UserComponent.svelte";
+	import userTokenValue from "../datas/user";
 </script>
     <SideBarContent/>
+{#if userTokenValue}
 <div class="centered-div">
     <SuggestedPlayLists/>
 </div>
 <div class="top-right">
 <UserComponent/>
 </div>
+{/if}
+
 <style>
 .centered-div {
             position: absolute;

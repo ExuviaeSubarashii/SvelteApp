@@ -1,37 +1,14 @@
 <script lang="ts">
-	import { base } from "$app/paths";
 	import { onMount } from "svelte";
-  import { page } from '$app/stores';
   import {SetId} from '.././datas/songs'
 
-    import {userTokenValue} from '../datas/user';
-    import { baseUrl } from "../datas/store";
-
+	import { GetUserSuggestedPlayLists, exportedsuggestedplaylist } from "../datas/suggestedplaylists";
   var playlist:any = [];
+    onMount(async ()=>{
+      await GetUserSuggestedPlayLists();
+      playlist=exportedsuggestedplaylist;
+    });
 
-  async function GetUserSuggestedPlayLists() {
-
-const requestOptions = {
-  method: 'POST',
-  body: JSON.stringify(userTokenValue),
-  headers: { 'Content-Type': 'application/json' },
-};
-try {
-  const response = await fetch(`${baseUrl}/Playlist/GetSuggestedPlayLists`, requestOptions);
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-  const data = await response.json();
-  playlist = data;
-  console.log(`suggested`,playlist);
-} catch (error) {
-  console.error('Error:', error);
-}
-}
-function GetPlaylistId(id:any){
-console.log(id);
-}
-    onMount(GetUserSuggestedPlayLists);
 </script>
 <div class="playlistSummary" role="button" aria-pressed="false" id="{playlist.playListId}">
 

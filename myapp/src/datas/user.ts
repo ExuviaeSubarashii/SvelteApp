@@ -3,8 +3,8 @@ import { writable } from "svelte/store";
 export var userTokenValue:any;
 export var userIdValue:any;
 // Initialize the store with a default value
-export const usertoken = writable(browser ? localStorage.getItem("usertoken") || "undefined" : "undefined");
-export const userId = writable(browser ? localStorage.getItem("userId") || "undefined" : "undefined");
+export const usertoken = writable(browser ? localStorage.getItem("usertoken") || undefined : undefined);
+export const userId = writable(browser ? localStorage.getItem("userId") || undefined : undefined);
 
 usertoken.subscribe((val) => {
   if (browser) {
