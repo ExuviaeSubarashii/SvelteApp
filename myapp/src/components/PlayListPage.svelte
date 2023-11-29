@@ -60,11 +60,6 @@
         <p class="label">Album Name:</p>
         <p class="data">{song.albumName}</p>
       </div>
-      
-      <div class="detail">
-        <p class="label">Date Added:</p>
-        <p class="data">{song.dateAdded}</p>
-      </div>
     </div>
   </div>
   {/each}

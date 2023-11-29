@@ -1,42 +1,41 @@
 <script lang="ts">
-	import { base } from "$app/paths";
 	import userTokenValue from "../datas/user";
-	import PlayLists from "./PlayLists.svelte";
-	import { ThePlayListThing } from "../datas/playlistTypes";
     import { howgood } from "../datas/gettoday";
     import PlayBar from "../components/PlayBar.svelte";
     import {showComponent} from '../datas/store'
 	import CreatePlaylistComponent from "./CreatePlaylistComponent.svelte";
-    import { baseUrl } from "../datas/store";
+	import PlayLists from "./PlayLists.svelte";
+	import { PlaylistSearch, exportedplaylists } from "../datas/playlists";
+    let plname="";
 </script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 
 <div class="fullbody">
 <div class="fixed-tops">
+
     <button><i class='bx bx-left-arrow-alt'></i></button>
     <button><i class='bx bx-right-arrow-alt'></i></button>
+
     <p id="howgood">{howgood}</p>
+
     {#if userTokenValue===null||userTokenValue===undefined}
     <div class="logins">
         <button><a href="login">Login</a></button>
         <button><a href="register">Register</a></button>
     </div>
+
     {/if}
     <label style="color:gray;"><a href="/"> <i class='bx bx-home'></i>Home</a></label>
     <label style="color:gray;"><a href="/"><i class='bx bx-search'></i> Search</a></label>
     <label style="color:gray;"><a href="/"><i class='bx bx-library'></i>Your Library</a></label>
-  
     <div>
-        <button style="text-align:center;" on:click={()=> ThePlayListThing("")}>Playlists</button>
         <CreatePlaylistComponent/>
       </div>
-     
-    <button on:click={()=> ThePlayListThing("Podcast")}>Podcasts & Shows</button>
-    <button on:click={()=> ThePlayListThing("Albums")}>Albums</button>
     <button><a style="text-decoration: none; color:white" href="/findsong">Find Songs</a></button>
     <button style="background-color:transparent; color:gray;"><i class='bx bx-search'></i></button>
-    <input style="border-radius: 25px; background-color:gray; color:white;" id="searchpl" />
+    <input style="border-radius: 25px; background-color:gray; color:white;" id="searchpl" type="text" bind:value={plname} on:input={()=>PlaylistSearch(plname)}/>
+
     <div class="currentSong">
       {#if !$showComponent}
       <PlayBar />
@@ -44,7 +43,10 @@
   </div>
 </div>
   <div class="playLists">
-<PlayLists/>
+    {#key exportedplaylists}
+    <PlayLists/>
+        
+    {/key}
   </div>
 </div>
 <style>

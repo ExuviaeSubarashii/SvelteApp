@@ -3,7 +3,7 @@
   import {SetId} from '.././datas/songs'
 import {GetUserPlayLists, exportedplaylists} from '../datas/playlists'
 import PlaylistOptions from './PlaylistOptions.svelte';
-var playlists: any[] = [];
+let playlists:any = [];
 var userprops:any=[];
 var selectedPlaylist: any = null;
 
@@ -15,11 +15,13 @@ function ChangeState(playlist: any) {
   propertyState = !propertyState;
   console.log(propertyState);
 }
-async function onComponentMount() {
-  await GetUserPlayLists();
-  playlists = exportedplaylists;
-}
-onMount(onComponentMount);
+onMount(() => {
+    const unsubscribe = exportedplaylists.subscribe((value) => {
+      playlists = value;
+    });
+    GetUserPlayLists();
+    return unsubscribe;
+  });
   </script>
   <div class="scrollable-container">
   {#if playlists.length>0}
