@@ -2,7 +2,8 @@
 	import { onMount } from "svelte";
 import userTokenValue from "../datas/user";
 import { GetUserPropertiesByToken, userPropertiesbytoken } from "../datas/userproperties";
-	import { LogOut } from "../datas/useractivities";
+import { LogOut } from "../datas/useractivities";
+import { minidenticon } from 'minidenticons'
 var userprops:any=[];
 let isToggled: any=false;
 function handleClick() {
@@ -21,6 +22,7 @@ onMount(onComponentMount);
 <div class="top-right-user-component">
     <div class="dropdown" >
         <span>Hover me</span>
+        <minidenticon-svg style="height:10px; width:10px;" username="{userPropertiesbytoken.userName}" saturation="60" lightness="50"></minidenticon-svg>
         <div class="dropdown-content">
             <a href="/user/account">Account <i class='bx bxs-right-top-arrow-circle'></i></a>
             <a href="/user/{encodeURIComponent(userprops.userId)}">Profile</a>
