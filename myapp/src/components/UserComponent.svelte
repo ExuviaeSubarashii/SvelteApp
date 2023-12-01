@@ -16,9 +16,8 @@ async function onComponentMount() {
 
 onMount(onComponentMount);
 </script>
-{#await onComponentMount then }
-  
-{#if userTokenValue}
+
+
 <div class="top-right-user-component">
     <div class="dropdown" >
         <span>Hover me</span>
@@ -33,8 +32,7 @@ onMount(onComponentMount);
         </div>
     </div>
 </div>
-{/if}
-{/await}
+
 
 <style>
 .top-right-user-component{

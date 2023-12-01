@@ -14,7 +14,10 @@ function ShowProperties(){
 }
 function PopUpPlaylists(){
     popupplaylists=!popupplaylists;
-    playlists=exportedplaylists;
+
+    const unsubscribe = exportedplaylists.subscribe((value) => {
+      playlists = value;
+    });
     console.log(playlists);
     console.log(userIdValue);
 }

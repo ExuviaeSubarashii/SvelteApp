@@ -38,3 +38,30 @@ fetch(`${baseUrl}/User/Login`, requestOptions)
         console.error('Error occurred while sending the request:', error);
     });
 }
+export function Register(email:string,password:string,username:string){
+    const user = {
+        userEmail: email,
+        userPassword: password,
+        userName:username
+    };
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    fetch(`${baseUrl}/User/Register`, requestOptions)
+        .then(response => {
+            if (response.ok) {
+                window.location.href='/login';
+                return response.json();
+            }
+            else {
+                throw new Error(response.statusText);
+            }
+        })
+        .catch(error => {
+            console.error('Error occurred while sending the request:', error);
+        });
+}
