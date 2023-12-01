@@ -21,4 +21,4 @@ export async function GetUserSuggestedPlayLists() {
       console.error('Error:', error);
     }
     }
-    export var exportedsuggestedplaylist:[]=[];
+    export var exportedsuggestedplaylist:any=[];
