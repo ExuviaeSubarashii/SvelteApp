@@ -1,5 +1,4 @@
 <script lang="ts">
-	import EditProfileComponent from "./EditProfileComponent.svelte";
 
 </script>
 
@@ -9,7 +8,7 @@
 	<div class="account">
 		<h3>Account</h3>
 		<div>
-			<button><i class="bx bx-pencil" /> Edit Profile</button>
+			<button><a href="/account/profile"><i class="bx bx-pencil" /> </a>Edit Profile</button>
 		</div>
 		<div>
 			<button><i class="bx bx-recycle" /> Recover Playlists</button>
@@ -30,7 +29,7 @@
 	<div class="security">
 		<h3>Security and privacy</h3>
 		<div>
-			<button><i class="bx bx-purchase-tag-alt" /> Change password</button>
+			<button><a href="/account/change-password"><i class="bx bx-purchase-tag-alt" /> </a>Change password</button>
 		</div>
 		<div>
 			<button><i class="bx bx-shape-square" /> Manage apps</button>

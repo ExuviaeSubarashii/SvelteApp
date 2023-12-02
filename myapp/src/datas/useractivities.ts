@@ -1,48 +1,50 @@
 import { baseUrl } from "./store";
+import userTokenValue from "./user";
 
-export function LogOut(){
+
+export function LogOut() {
     localStorage.clear();
     location.reload();
 }
-export function Login(email:string,password:string){
+export function Login(email: string, password: string) {
     const user = {
-    userEmail: email,
-    password: password
-};
+        userEmail: email,
+        password: password
+    };
 
-const requestOptions = {
-    method: 'POST',
-    body: JSON.stringify(user),
-    headers: {
-        'Content-Type': 'application/json'
-    }
-};
-fetch(`${baseUrl}/User/Login`, requestOptions)
-    .then(response => {
-        if (response.ok) {
-            window.location.href='/';
-            return response.json();
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-Type': 'application/json'
         }
-        else {
-            throw new Error(response.statusText);
-        }
-    })
-    .then(data => {
-        localStorage.setItem('userId',data.id);
-        localStorage.setItem('usertoken', data.userToken);
-        localStorage.setItem('userEmail', data.userEmail);
-        localStorage.setItem('userName', data.userName);
-        localStorage.setItem('isLoggedIn', "true");
-    })
-    .catch(error => {
-        console.error('Error occurred while sending the request:', error);
-    });
+    };
+    fetch(`${baseUrl}/User/Login`, requestOptions)
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/';
+                return response.json();
+            }
+            else {
+                throw new Error(response.statusText);
+            }
+        })
+        .then(data => {
+            localStorage.setItem('userId', data.id);
+            localStorage.setItem('usertoken', data.userToken);
+            localStorage.setItem('userEmail', data.userEmail);
+            localStorage.setItem('userName', data.userName);
+            localStorage.setItem('isLoggedIn', "true");
+        })
+        .catch(error => {
+            console.error('Error occurred while sending the request:', error);
+        });
 }
-export function Register(email:string,password:string,username:string){
+export function Register(email: string, password: string, username: string) {
     const user = {
         userEmail: email,
         userPassword: password,
-        userName:username
+        userName: username
     };
     const requestOptions = {
         method: 'POST',
@@ -54,7 +56,7 @@ export function Register(email:string,password:string,username:string){
     fetch(`${baseUrl}/User/Register`, requestOptions)
         .then(response => {
             if (response.ok) {
-                window.location.href='/login';
+                window.location.href = '/login';
                 return response.json();
             }
             else {
@@ -64,4 +66,61 @@ export function Register(email:string,password:string,username:string){
         .catch(error => {
             console.error('Error occurred while sending the request:', error);
         });
+}
+export async function ChangeEmail(newEmail: any) {
+    const user = {
+        newEmail: newEmail,
+        userToken: userTokenValue
+    };
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    try {
+
+        const response = await fetch(`${baseUrl}/User/ChangeEmail`, requestOptions);
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        const data = await response.json();
+        console.log("changed email:" + data);
+        localStorage.setItem('userEmail', data.userEmail);
+        window.location.href = "/"
+    }
+
+    catch (error) {
+        console.error('Error:', error);
+    }
+
+}
+export async function ChangePassword(newPassword: string) {
+    const user = {
+        newPassword: newPassword,
+        userToken: userTokenValue
+    };
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    try {
+
+        const response = await fetch(`${baseUrl}/User/ChangePassword`, requestOptions);
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        const data = await response.json();
+        console.log("changed password:" + data);
+        localStorage.setItem('userPassword', data.userPassword);
+        window.location.href = "/"
+    }
+
+    catch (error) {
+        console.error('Error:', error);
+    }
 }
