@@ -21,7 +21,7 @@ export var targetDuration = 0;
 var elapsedSeconds = 0;
 var minutes = Math.floor(elapsedSeconds / 60);
 var remainingSeconds = elapsedSeconds % 60;
-var isRunning = true; // Initially, the timer is running
+var isRunning = true;
 
 function updateCounter() {
   if (isRunning && elapsedSeconds < targetDuration) {

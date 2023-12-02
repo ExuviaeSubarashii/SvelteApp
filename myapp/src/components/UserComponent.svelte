@@ -23,7 +23,7 @@ onMount(onComponentMount);
         <span>Hover me</span>
         <minidenticon-svg style="height:10px; width:10px;" username="{userPropertiesbytoken.userName}" saturation="60" lightness="50"></minidenticon-svg>
         <div class="dropdown-content">
-            <a href="/user/account">Account <i class='bx bxs-right-top-arrow-circle'></i></a>
+            <a href="/account">Account <i class='bx bxs-right-top-arrow-circle'></i></a>
             <a href="/user/{encodeURIComponent(userprops.userId)}">Profile</a>
             <span>Private Session</span>
             <a href="/user/settings">Settings</a>
