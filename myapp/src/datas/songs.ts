@@ -1,10 +1,9 @@
   
-  import { exportedId } from '../datas/store';
+  import { writable } from 'svelte/store';
+import { exportedId } from '../datas/store';
   import { baseUrl } from "../datas/store";
   
   export async function GetSongs(id:string) {
-
-
     const requestOptions = {
       method: 'POST',
       body: JSON.stringify(id),
@@ -17,14 +16,10 @@
         throw new Error(response.statusText);
       }
       const data = await response.json();
-      return data;
+      exportedplaylistcontents.set(data);
     } catch (error) {
       console.error('Error:', error);
       return [];
     }
   }
-  export function SetId(id:any){
-    console.clear();
-    exportedId.set(id);
-    console.log(exportedId);
-  }
+  export const exportedplaylistcontents = writable([]);

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-  import {SetId} from '.././datas/songs'
 
 	import { GetUserSuggestedPlayLists, exportedsuggestedplaylist } from "../datas/suggestedplaylists";
   var playlist:any = [];
@@ -14,7 +13,7 @@
 
 {#each playlist as playlist (playlist.playListId) }
     <div class="separated">
-        <a draggable="false" href="songs/?id={encodeURIComponent(playlist.playListId)}" on:click={() => SetId(playlist.playListId)}>
+        <a draggable="false" href="songs/{encodeURIComponent(playlist.playListId)}">
           <p>
             {playlist.title}
           </p>

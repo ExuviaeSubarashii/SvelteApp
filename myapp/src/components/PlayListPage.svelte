@@ -1,35 +1,27 @@
 <script lang="ts">
 	import {afterUpdate, beforeUpdate, onDestroy, onMount} from 'svelte';
-  import { GetSongs } from '../datas/songs';
+  import { GetSongs, exportedplaylistcontents } from '../datas/songs';
   import { exportedId,songQueue } from '../datas/store';
   import { SetCurrentSong, songProperties } from '../datas/listening';
 	import PlayBar from './PlayBar.svelte';
   import {showComponent} from '../datas/store'
   var songs: any = []; 
-  var queueArray:any=[];
+  export let exportedIdfromdata:any="";
   export async function recreateComponent(songId:any) {
     $showComponent = !$showComponent;
     await SetCurrentSong(songId);
     $showComponent = !$showComponent;
   }
-
-  const unsubscribe = exportedId.subscribe(async (id) => {
-    try {
-      const data = await GetSongs(id);
-      songs = data;
-
-      songQueue.subscribe((queue) => {
-        queueArray = queue;
-});
-      songQueue.set(data);
-      console.log(songs);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  });
-  onDestroy(() => {
-    unsubscribe();
-  });
+  onMount(()=>{
+    GetSongs(exportedIdfromdata);
+    const unsubscribe=exportedplaylistcontents.subscribe((value)=>{
+      songs=value;
+    })
+    console.log(songs);
+    return unsubscribe;
+  })
+  
+  
 
   </script>
 
