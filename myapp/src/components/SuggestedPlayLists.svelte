@@ -5,7 +5,10 @@
   var playlist:any = [];
     onMount(async ()=>{
       await GetUserSuggestedPlayLists();
-      playlist=exportedsuggestedplaylist;
+      const unsubscribe=exportedsuggestedplaylist.subscribe((value: any)=>{
+        playlist=value;
+      })
+      return unsubscribe;
     });
 
 </script>

@@ -4,11 +4,14 @@
 	import SuggestedPlayLists from "../components/SuggestedPlayLists.svelte";
 	import UserComponent from "../components/UserComponent.svelte";
 	import userTokenValue from "../datas/user";
+	import { exportedsuggestedplaylist } from "../datas/suggestedplaylists";
 </script>
     <SideBarContent/>
 {#if userTokenValue}
 <div class="centered-div">
+    {#key exportedsuggestedplaylist}
     <SuggestedPlayLists/>
+    {/key}
 </div>
 <div class="top-right">
 <UserComponent/>

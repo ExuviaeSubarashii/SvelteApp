@@ -16,7 +16,11 @@ import { exportedId } from '../datas/store';
         throw new Error(response.statusText);
       }
       const data = await response.json();
+      console.log(data.playlistName);
       exportedplaylistcontents.set(data);
+      exportedplaylistcontents.subscribe((value)=>{
+        console.log(value);
+      })
     } catch (error) {
       console.error('Error:', error);
       return [];

@@ -20,6 +20,7 @@ function PopUpPlaylists(){
     });
     console.log(playlists);
     console.log(userIdValue);
+    return unsubscribe;
 }
 
 </script>

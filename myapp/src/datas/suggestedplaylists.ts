@@ -1,3 +1,4 @@
+import { writable } from "svelte/store";
 import { baseUrl } from "./store";
 import userTokenValue from "./user";
 
@@ -15,10 +16,10 @@ export async function GetUserSuggestedPlayLists() {
         throw new Error(response.statusText);
       }
       const data = await response.json();
-      exportedsuggestedplaylist = data;
-      console.log(`suggested`,exportedsuggestedplaylist);
+      exportedsuggestedplaylist.set(data);
+      console.log(`suggested`,data);
     } catch (error) {
       console.error('Error:', error);
     }
     }
-    export var exportedsuggestedplaylist:any=[];
+    export var exportedsuggestedplaylist:any=writable([]);

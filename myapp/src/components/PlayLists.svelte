@@ -27,13 +27,12 @@
 	{#if playlists.length > 0}
 		{#each playlists as playlist (playlist.playListId)}
 			<hr />
-			<a
+			<div
 				class="playlistSummary"
 				tabindex="0"
 				role="button"
 				aria-pressed="false"
 				id={playlist.playListId}
-				href="/songs/{encodeURIComponent(playlist.playListId)}"
 			>
 				<h3>
 					<a
@@ -57,7 +56,7 @@
 						playlistOwner={playlist.playListOwnerId}
 					/>
 				{/if}
-			</a>
+			</div>
 		{/each}
 	{:else}
 		<div class="playlistSummary">
