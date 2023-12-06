@@ -1,16 +1,11 @@
 <script lang="ts">
-	import { afterUpdate, beforeUpdate, onDestroy, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { GetSongs, exportedplaylistcontents } from '../datas/songs';
-	import { exportedId, songQueue } from '../datas/store';
-	import { SetCurrentSong, songProperties } from '../datas/listening';
-	import PlayBar from './PlayBar.svelte';
+	import { SetCurrentSong } from '../datas/listening';
 	import { showComponent } from '../datas/store';
-	import { RemovePlaylistContents, responseMessage } from '../datas/playlisthandler';
+	import { RemovePlaylistContents } from '../datas/playlisthandler';
 	var songs: any = [];
-	let playlistName: string = '';
 	export let exportedIdfromdata: any = '';
-
-	let statusMessage: any = '';
 	export async function recreateComponent(songId: any) {
 		$showComponent = !$showComponent;
 		await SetCurrentSong(songId);
@@ -52,7 +47,9 @@
 						<p class="label">Album Name:</p>
 						<p class="data">{song.albumName}</p>
 					</div>
-					<button on:click={() => RemovePlaylistContents(exportedIdfromdata, song.songId)}
+					<button on:click={() => {
+						RemovePlaylistContents(exportedIdfromdata, song.songId)
+					}}
 						><i class="bx bx-x" /></button>
 				</div>
 			</div>
@@ -75,7 +72,7 @@
 		color: white;
 
 		position: absolute;
-		top: 0%;
+		top: 10%;
 		left: 50%;
 		transform: translate(-50%);
 		background-color: gray;

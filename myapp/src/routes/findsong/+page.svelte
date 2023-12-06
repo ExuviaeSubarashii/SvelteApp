@@ -6,7 +6,11 @@
 	import UserComponent from "../../components/UserComponent.svelte";
 	import SideBarContent from "../../components/SideBarContent.svelte";
 	import FindSongsComponent from "../../components/FindSongsComponent.svelte";
+	import ResponseMessageComponent from "../../components/ResponseMessageComponent.svelte";
     </script>
     <FindSongsComponent/>
 <UserComponent/>
 <SideBarContent/>
+<ResponseMessageComponent/>
+
+

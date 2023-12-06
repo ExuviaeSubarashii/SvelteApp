@@ -1,31 +1,34 @@
 <script>
-	import { onMount } from "svelte";
-    import SideBarContent from "../components/SideBarContent.svelte";
-	import SuggestedPlayLists from "../components/SuggestedPlayLists.svelte";
-	import UserComponent from "../components/UserComponent.svelte";
-	import userTokenValue from "../datas/user";
-	import { exportedsuggestedplaylist } from "../datas/suggestedplaylists";
+	import { onMount } from 'svelte';
+	import SideBarContent from '../components/SideBarContent.svelte';
+	import SuggestedPlayLists from '../components/SuggestedPlayLists.svelte';
+	import UserComponent from '../components/UserComponent.svelte';
+	import userTokenValue from '../datas/user';
+	import { exportedsuggestedplaylist } from '../datas/suggestedplaylists';
+	import ResponseMessageComponent from '../components/ResponseMessageComponent.svelte';
 </script>
-    <SideBarContent/>
+
+<SideBarContent />
 {#if userTokenValue}
-<div class="centered-div">
-    {#key exportedsuggestedplaylist}
-    <SuggestedPlayLists/>
-    {/key}
-</div>
-<div class="top-right">
-<UserComponent/>
-</div>
+	<div class="centered-div">
+		{#key exportedsuggestedplaylist}
+			<SuggestedPlayLists />
+		{/key}
+	</div>
+	<div class="top-right">
+		<UserComponent />
+	</div>
+	
 {/if}
 
 <style>
-.centered-div {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: gray;
-            padding: 20px;
-            border-radius: 25px;
-        }
+	.centered-div {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color: gray;
+		padding: 20px;
+		border-radius: 25px;
+	}
 </style>

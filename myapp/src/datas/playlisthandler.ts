@@ -2,9 +2,9 @@ import userTokenValue from "./user";
 import { baseUrl } from "../datas/store";
 import { GetUserPlayLists } from "./playlists";
 import { GetUserSuggestedPlayLists } from "./suggestedplaylists";
-
-export var exportplaylists: any[] = [];
-export let responseMessage:any="";
+import { writable } from "svelte/store";
+import { GetSongs } from "./songs";
+import exportedIdfromdata from '../components/PlayListPage.svelte'
 export async function CreatePlaylist() {
   const body = {
     userToken: userTokenValue
@@ -20,7 +20,8 @@ export async function CreatePlaylist() {
       throw new Error(response.statusText);
     }
 
-    responseMessage = await response.text();
+    const responseMessage=await response.text();
+  responseMessageStore.set(responseMessage);
 
 console.log("returned:", responseMessage);
 if(responseMessage==="Created"){
@@ -62,8 +63,11 @@ export async function UpdatePlaylistName(playlistId: unknown, newPlaylistName: s
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-    responseMessage=await response.text();
+    const responseMessage=await response.text();
+  responseMessageStore.set(responseMessage);
     console.log(responseMessage);
+  return responseMessage;
+
   } catch (error) {
     console.error('Error:', error);
   }
@@ -86,8 +90,11 @@ export async function UpdatePlayListContents(playlistid: string, playListContent
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-    responseMessage=await response.text();
+    const responseMessage=await response.text();
+  responseMessageStore.set(responseMessage);
     console.log(responseMessage);
+  return responseMessage;
+
   } catch (error) {
     console.error('Error:', error);
   }
@@ -110,9 +117,13 @@ export async function RemovePlaylistContents(playlistid:string,songId:string){
   if (!response.ok) {
     throw new Error(response.statusText);
   }
-  responseMessage=await response.text();
+  const responseMessage=await response.text();
+  responseMessageStore.set(responseMessage);
   console.log(responseMessage);
+  return responseMessage;
 } catch (error) {
   console.error('Error:', error);
+  return Promise.reject(error);
 }
 }
+export const responseMessageStore=writable("");

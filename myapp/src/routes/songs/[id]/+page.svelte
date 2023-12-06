@@ -4,6 +4,7 @@
 	import SideBarContent from '../../../components/SideBarContent.svelte';
 	import UserComponent from '../../../components/UserComponent.svelte';
 	import PlayListPage from '../../../components/PlayListPage.svelte';
+	import ResponseMessageComponent from '../../../components/ResponseMessageComponent.svelte';
     console.log("playlistid:", data.props.playlistdata.id);
 </script>
 <SideBarContent />
@@ -13,3 +14,7 @@
 </div>
 {/key}
 <UserComponent />
+
+<ResponseMessageComponent/>
+
+

@@ -4,6 +4,7 @@ import userTokenValue from "../datas/user";
 import { GetUserPropertiesByToken, userPropertiesbytoken } from "../datas/userproperties";
 import { LogOut } from "../datas/useractivities";
 import { minidenticon } from 'minidenticons'
+	import ResponseMessageComponent from "./ResponseMessageComponent.svelte";
 var userprops:any=[];
 let isToggled: any=false;
 function handleClick() {
