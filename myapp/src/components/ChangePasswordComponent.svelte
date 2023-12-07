@@ -7,28 +7,62 @@
 </script>
 
 <div class="fullbody">
+	<h1 style="font-size: 50px;">Change your password</h1>
+	<p style="color: white;">New Password</p>
 	<input bind:value={newPassword} />
+	<p style="color: white;">New Password Again</p>
 	<input bind:value={newPasswordAgain} />
-	<button
-		on:click={() => {
-			if (newPassword === newPasswordAgain) {
-				ChangePassword(newPassword);
-			}
-		}}>Save Password Changes</button
-	>
+	<div class="button-div">
+		<a type="button" class="cancel-button" href="/account/">Cancel</a>
+
+		<button
+			class="save-button"
+			on:click={() => {
+				if (newPassword === newPasswordAgain) {
+					ChangePassword(newPassword);
+				}
+			}}>Set new password</button
+		>
+	</div>
 </div>
 
 <style>
 	.fullbody {
-		position: fixed;
-		font-size: 20px;
 		display: flex;
 		flex-flow: column;
 		-webkit-box-pack: start;
-		max-width: 800px;
-		min-height: 800px;
 		margin: 250px auto;
 		padding: 62px 800px;
-        font-size: 15px;
+		font-size: 15px;
+	}
+	.fullbody h1,
+	input {
+		color: white;
+		font-size: large;
+		height: 50px;
+		margin-top: 5px;
+	}
+	.button-div{
+		align-self: flex-end;
+    padding-top: 14px;
+    padding: 15px;
+    font-weight: bold;
+    align-content: center;
+	text-align: end;
+	font-weight: bolder;
+	}
+
+	.save-button {
+		background-color: #22ce61;
+		margin-top: 14px;
+		width: 130px;
+		height: 50px;
+		border-radius: 20px;
+	}
+	.cancel-button {
+		align-self: self-start;
+		text-decoration: none;
+		color: gray;
+		font-size: 15px;
 	}
 </style>

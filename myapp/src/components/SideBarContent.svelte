@@ -5,54 +5,73 @@
 	import { showComponent } from '../datas/store';
 	import CreatePlaylistComponent from './CreatePlaylistComponent.svelte';
 	import PlayLists from './PlayLists.svelte';
-	import {GetPodcasts,GetUserPlayLists,PlaylistSearch,exportedplaylists} from '../datas/playlists';
+	import {
+		GetPodcasts,
+		GetUserPlayLists,
+		PlaylistSearch,
+		exportedplaylists
+	} from '../datas/playlists';
 	let plname = '';
+	let normalSize=false;
+	function MinimizeLibrary() {
+		const sidebarDiv = document.getElementById('fullbody');
+		let normalWidth="300px";
+		let minWidth="150px";
+		if (sidebarDiv) {
+			if(normalSize){
+				sidebarDiv.style.width = normalWidth;
+			}
+			else{
+				sidebarDiv.style.width = minWidth;
+			}
+			normalSize = !normalSize;
+		}
+		
+	}
 </script>
 
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
-<div class="fullbody">
-{#if userTokenValue}
-    
+<div class="fullbody" id="fullbody">
+	{#if userTokenValue}
+		<div class="fixed-tops">
+			<p id="howgood">{howgood}</p>
+			<label style="color:gray;"><a href="/"> <i class="bx bx-home" />Home</a></label>
+			<label style="color:gray;"><a href="/"><i class="bx bx-search" /> Search</a></label>
+			<label on:click={MinimizeLibrary} style="color:gray;"
+				><a href="/"><i class="bx bx-library" />Your Library</a></label
+			>
+			<div style="display:flex;">
+				<CreatePlaylistComponent />
+				<button on:click={() => GetUserPlayLists()}><i class="bx bx-refresh" /></button>
+			</div>
+			<button on:click={() => GetPodcasts('Podcast')}>Podcasts & Shows</button>
+			<button on:click={() => GetPodcasts('Albums')}>Albums</button>
+			<button><a style="text-decoration: none; color:white" href="/findsong">Find Songs</a></button>
+			<input
+				style="border-radius: 25px; background-color:gray; color:white;"
+				placeholder="Search Your Library"
+				id="searchpl"
+				type="text"
+				bind:value={plname}
+				on:input={() => PlaylistSearch(plname)}
+			/>
 
-	<div class="fixed-tops">
-		<button><i class="bx bx-left-arrow-alt" /></button>
-		<button><i class="bx bx-right-arrow-alt" /></button>
-		<p id="howgood">{howgood}</p>
-		<label style="color:gray;"><a href="/"> <i class="bx bx-home" />Home</a></label>
-		<label style="color:gray;"><a href="/"><i class="bx bx-search" /> Search</a></label>
-		<label style="color:gray;"><a href="/"><i class="bx bx-library" />Your Library</a></label>
-		<div style="display:flex;">
-			<CreatePlaylistComponent />
-			<button on:click={() => GetUserPlayLists()}><i class="bx bx-refresh" /></button>
+			<div class="currentSong">
+				{#if !$showComponent}
+					<PlayBar />
+				{/if}
+			</div>
 		</div>
-		<button on:click={() => GetPodcasts('Podcast')}>Podcasts & Shows</button>
-		<button on:click={() => GetPodcasts('Albums')}>Albums</button>
-		<button><a style="text-decoration: none; color:white" href="/findsong">Find Songs</a></button>
-		<button style="background-color:transparent; color:gray;"><i class="bx bx-search" /></button>
-		<input
-			style="border-radius: 25px; background-color:gray; color:white;"
-			id="searchpl"
-			type="text"
-			bind:value={plname}
-			on:input={() => PlaylistSearch(plname)}
-		/>
-
-		<div class="currentSong">
-			{#if !$showComponent}
-				<PlayBar />
-			{/if}
+		<div class="playLists">
+			{#key exportedplaylists}
+				<PlayLists />
+			{/key}
 		</div>
-	</div>
-	<div class="playLists">
-		{#key exportedplaylists}
-			<PlayLists />
-		{/key}
-	</div>
-    {:else}
-    <button><a href="login">Login</a></button>
-    <button><a href="register">Register</a></button>
-    {/if}
+	{:else}
+		<button><a href="login">Login</a></button>
+		<button><a href="register">Register</a></button>
+	{/if}
 </div>
 
 <style>
@@ -75,20 +94,19 @@
 		border-radius: 20px;
 	}
 	.fullbody {
+		margin-top: 50px;
+		border-style: solid;
 		text-align: center;
 		background-color: #111;
 		color: white;
 		resize: horizontal;
 		overflow: auto;
-		padding: 20px;
 		border-radius: 25px;
 		border-color: gray;
-		top: 150;
-		left: 150;
 		height: 100%;
-		width: 300px;
 		min-width: 150px;
 		max-width: 780px;
+		width: 300px;
 	}
 
 	button {
