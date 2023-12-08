@@ -1,10 +1,9 @@
 import userTokenValue from "./user";
 import { baseUrl } from "../datas/store";
-import { GetUserPlayLists } from "./playlists";
+import { GetUserPlayLists, exportedplaylists } from "./playlists";
 import { GetUserSuggestedPlayLists } from "./suggestedplaylists";
 import { writable } from "svelte/store";
-import { GetSongs } from "./songs";
-import exportedIdfromdata from '../components/PlayListPage.svelte'
+
 export async function CreatePlaylist() {
   const body = {
     userToken: userTokenValue
@@ -33,9 +32,13 @@ if(responseMessage==="Created"){
 }
 }
 export async function DeletePlaylist(playlistId: any) {
+  const body={
+    playlistId:playlistId,
+    userToken:userTokenValue
+  }
   const requestOptions = {
     method: 'POST',
-    body: playlistId,
+    body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' },
   };
   try {
@@ -43,6 +46,27 @@ export async function DeletePlaylist(playlistId: any) {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
+    GetUserPlayLists();
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+export async function DeleteFromJustYourLibrary(playlistId: any) {
+  const body={
+    playlistId:playlistId,
+    userToken:userTokenValue
+  }
+  const requestOptions = {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: { 'Content-Type': 'application/json' },
+  };
+  try {
+    const response = await fetch(`${baseUrl}/Playlist/DeleteFromJustYourLibrary`, requestOptions);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    GetUserPlayLists();
   } catch (error) {
     console.error('Error:', error);
   }

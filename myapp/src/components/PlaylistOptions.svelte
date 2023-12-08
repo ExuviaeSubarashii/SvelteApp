@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DeletePlaylist } from '../datas/playlisthandler';
+	import { DeleteFromJustYourLibrary, DeletePlaylist } from '../datas/playlisthandler';
 	import { userIdValue } from '../datas/user';
 	export let playlistId: any;
     export let playlistOwner:any;
@@ -18,7 +18,7 @@
 <div>
     <div class="options">
         <div class="remove">
-            <button>Remove From Library</button>
+            <button on:click={() => DeleteFromJustYourLibrary(playlistId)}>Remove From Library</button>
         </div>
     </div>
 </div>
