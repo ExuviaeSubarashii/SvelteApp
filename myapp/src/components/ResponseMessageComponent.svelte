@@ -17,7 +17,6 @@
 	})
 </script>
 {#key $responseMessageStore}
-	
 {#if $isVisible}
 <div class="response-div">
 	<h1>{message}</h1>

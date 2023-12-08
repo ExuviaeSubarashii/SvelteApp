@@ -22,7 +22,7 @@ onMount(onComponentMount);
 <div class="top-right-user-component">
     <div class="dropdown" >
         <span>Hover me</span>
-        <minidenticon-svg style="height:10px; width:10px;" username="{userPropertiesbytoken.userName}" saturation="60" lightness="50"></minidenticon-svg>
+        <minidenticon-svg style="height:10px; width:10px;" username="{userPropertiesbytoken.userName}" saturation="50" lightness="50"></minidenticon-svg>
         <div class="dropdown-content">
             <a href="/account" target="_blank">Account <i class='bx bxs-right-top-arrow-circle'></i></a>
             <a href="/user/{encodeURIComponent(userprops.userId)}">Profile</a>

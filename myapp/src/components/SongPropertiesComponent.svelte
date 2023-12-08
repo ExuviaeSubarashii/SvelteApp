@@ -11,6 +11,7 @@ function ShowProperties(){
     if(popupplaylists){
     popupplaylists=!popupplaylists;
     }
+
 }
 function PopUpPlaylists(){
     popupplaylists=!popupplaylists;
@@ -20,13 +21,14 @@ function PopUpPlaylists(){
     });
     console.log(playlists);
     console.log(userIdValue);
+
     return unsubscribe;
 }
 
 </script>
 
 <div class="propr">
-    <button on:click={ShowProperties}>TripleDot</button>
+    <button on:click={ShowProperties}>...</button>
     {#if showprops }
     <button on:click={PopUpPlaylists}>Add to Playlist <i class='bx bxs-right-arrow'></i></button>
     {/if}
@@ -37,7 +39,7 @@ function PopUpPlaylists(){
 
     {#if playlist.playListOwnerId==userIdValue}
 
-    <button on:click={()=>UpdatePlayListContents(playlist.playListId,songId)}>
+    <button on:click={()=>{UpdatePlayListContents(playlist.playListId,songId)}}>
         <p>{playlist.playListTitle}</p>
     </button>
 
@@ -48,4 +50,11 @@ function PopUpPlaylists(){
 
 </div>
 <style>
+    .propr button{
+        background-color: transparent;
+        color:white;
+        border: outset;
+        border-color: #111111;
+        font: bold;
+    }
 </style>
