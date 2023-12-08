@@ -8,5 +8,5 @@ console.log("whatever:"+data.props.userdata.id);
 <div class="profile-component-part">
     <ProfileComponent profileid={data.props.userdata.id}/>
 </div>
-<SideBarContent/>
+<!-- <SideBarContent/> -->
 <UserComponent/>

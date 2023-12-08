@@ -4,7 +4,7 @@
     import QueueComponent from '../../components/QueueComponent.svelte';
 </script>
 <div class="container">
-    <SideBarContent/>
+    <!-- <SideBarContent/> -->
     <QueueComponent/>
   </div>
 <style>

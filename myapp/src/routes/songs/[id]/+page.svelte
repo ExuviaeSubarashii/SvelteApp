@@ -7,7 +7,7 @@
 	import ResponseMessageComponent from '../../../components/ResponseMessageComponent.svelte';
     console.log("playlistid:", data.props.playlistdata.id);
 </script>
-<SideBarContent />
+<!-- <SideBarContent/> -->
 {#key data.props.playlistdata.id }
 <div class="centered-div">
 	<PlayListPage exportedIdfromdata={data.props.playlistdata.id}/>

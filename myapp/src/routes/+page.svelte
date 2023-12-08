@@ -7,8 +7,7 @@
 	import { exportedsuggestedplaylist } from '../datas/suggestedplaylists';
 	import ResponseMessageComponent from '../components/ResponseMessageComponent.svelte';
 </script>
-
-<SideBarContent />
+<!-- <SideBarContent/> -->
 {#if userTokenValue}
 	<div class="centered-div">
 		{#key exportedsuggestedplaylist}

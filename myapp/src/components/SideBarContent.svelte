@@ -36,11 +36,16 @@
 	{#if userTokenValue}
 		<div class="fixed-tops">
 			<p id="howgood">{howgood}</p>
+			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<label style="color:gray;"><a href="/"> <i class="bx bx-home" />Home</a></label>
+			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<label style="color:gray;"><a href="/"><i class="bx bx-search" /> Search</a></label>
+			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<label on:click={MinimizeLibrary} style="color:gray;"
+			
 				><a href="/"><i class="bx bx-library" />Your Library</a></label
 			>
+			
 			<div style="display:flex;">
 				<CreatePlaylistComponent />
 				<button on:click={() => GetUserPlayLists()}><i class="bx bx-refresh" /></button>

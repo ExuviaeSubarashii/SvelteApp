@@ -10,7 +10,7 @@
     </script>
     <FindSongsComponent/>
 <UserComponent/>
-<SideBarContent/>
+<!-- <SideBarContent/> -->
 <ResponseMessageComponent/>
 
 
