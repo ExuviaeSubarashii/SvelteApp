@@ -46,7 +46,8 @@ export async function DeletePlaylist(playlistId: any) {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-    GetUserPlayLists();
+    await GetUserPlayLists();
+    await GetUserSuggestedPlayLists();
   } catch (error) {
     console.error('Error:', error);
   }

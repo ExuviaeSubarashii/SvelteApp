@@ -1,6 +1,4 @@
-  
   import { writable } from 'svelte/store';
-import { exportedId } from '../datas/store';
   import { baseUrl } from "../datas/store";
   export async function GetSongs(id:string) {
     const requestOptions = {
@@ -16,6 +14,7 @@ import { exportedId } from '../datas/store';
       }
       const data = await response.json();
       exportedplaylistcontents.set(data);
+      console.log(data);
     } catch (error) {
       console.error('Error:', error);
       return [];

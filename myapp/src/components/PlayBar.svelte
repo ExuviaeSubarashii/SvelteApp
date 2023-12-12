@@ -30,7 +30,6 @@
 
 <div class="playBar">
   <br>
-  <p>{"Now Playing"}</p>
   <h2>{songProperties.songName}</h2>
   <h4>{songProperties.songArtist}</h4>
   {#if minutes !== undefined && remainingSeconds !== undefined}
