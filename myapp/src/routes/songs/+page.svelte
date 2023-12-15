@@ -7,5 +7,4 @@ import exportedId from '../../components/PlayLists.svelte'
 <SideBarContent/>
 <div class="centered-div">
     <GetSongs/>
-</div>
-<UserComponent/> -->
+</div>-->

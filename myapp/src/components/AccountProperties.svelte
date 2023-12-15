@@ -3,7 +3,6 @@
 
 
 </script>
-<UserComponent/>
 <div class="fullbody">
 	<div class="edit-profile" />
 	<div class="update-card" />

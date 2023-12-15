@@ -3,4 +3,4 @@
     import UserComponent from "../../components/UserComponent.svelte";
 </script>
 <!-- <SideBarContent/> -->
-<UserComponent/>
+

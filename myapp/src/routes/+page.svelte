@@ -14,9 +14,8 @@
 			<SuggestedPlayLists />
 		{/key}
 	</div>
-	<div class="top-right">
-		<UserComponent />
-	</div>
+
+
 	
 {/if}
 

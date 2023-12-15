@@ -9,8 +9,6 @@
 	import ResponseMessageComponent from "../../components/ResponseMessageComponent.svelte";
     </script>
     <FindSongsComponent/>
-<UserComponent/>
-<!-- <SideBarContent/> -->
 <ResponseMessageComponent/>
 
 

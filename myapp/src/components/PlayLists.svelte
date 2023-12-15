@@ -89,6 +89,8 @@
 	}
 	.scrollable-container {
 		max-height: 550px;
+		width: 100%;
+
 		overflow-y: auto;
 		text-decoration: none;
 	}

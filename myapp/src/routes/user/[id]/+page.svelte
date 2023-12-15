@@ -9,4 +9,4 @@ console.log("whatever:"+data.props.userdata.id);
     <ProfileComponent profileid={data.props.userdata.id}/>
 </div>
 <!-- <SideBarContent/> -->
-<UserComponent/>
+

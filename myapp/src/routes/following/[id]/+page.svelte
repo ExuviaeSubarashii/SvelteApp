@@ -7,5 +7,4 @@
 </script>
 
 <FollowingComponent followid={data.userdata.id}/>
-<!-- <SideBarContent/> -->
-<UserComponent/>
+

@@ -13,7 +13,7 @@
 	<PlayListPage exportedIdfromdata={data.props.playlistdata.id}/>
 </div>
 {/key}
-<UserComponent />
+
 
 <ResponseMessageComponent/>
 
