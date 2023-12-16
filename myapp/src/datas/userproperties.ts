@@ -1,17 +1,19 @@
 import userTokenValue, { userIdValue } from "./user";
 import { baseUrl } from "../datas/store";
+import { writable } from "svelte/store";
 
-export let userPropertiesbytoken:any={
-  userName:"",
-  following:"",
-  followers:"",
-  userId:""
-};
+// export let userPropertiesbytoken:any={
+//   userName:"",
+//   following:"",
+//   followers:"",
+//   userId:""
+// };
 export let userPropertiesbyid:any={
   userName:"",
   following:"",
   followers:"",
-  userId:""
+  userId:"",
+  isFollowing:""
 };
 export async function GetUserPropertiesByToken(){
     const requestOptions = {
@@ -25,23 +27,29 @@ export async function GetUserPropertiesByToken(){
           throw new Error(response.statusText);
         }
         const data = await response.json();
-        userPropertiesbytoken = {
-          userName: data.userName,
-          followers: data.followers,
-          following: data.following,
-          userId:data.userId
-        };
+        // userPropertiesbytoken = {
+        //   userName: data.userName,
+        //   followers: data.followers,
+        //   following: data.following,
+        //   userId:data.userId
+        // };
+        userPropertiesbytoken.set(data);
         console.log("useridvaluefromts:"+userIdValue)
-        console.log(`current user:`,userPropertiesbytoken);
+        console.log(`currentlly logged in user:`,userPropertiesbytoken);
       } catch (error) {
         console.error('Error:', error);
       }
 }
+export const userPropertiesbytoken=writable('');
 export async function GetUserPropertiesById(userId:any){
-  console.log("userid",userId)
+  console.log("userid of the profile",userId)
+  const body={
+    CurrentViewerUserToken:userTokenValue,
+    CurrentlyViewedUserProfileId:userId
+  }
     const requestOptions = {
         method: 'POST',
-        body: JSON.stringify(userId),
+        body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' },
       };
       try {
@@ -54,7 +62,8 @@ export async function GetUserPropertiesById(userId:any){
           userName: data.userName,
           followers: data.followers,
           following: data.following,
-          userId:data.userId
+          userId:data.userId,
+          isFollowing:data.isFollowing
         };
         console.log(`userPropertiesbyid:`,userPropertiesbyid);
       } catch (error) {

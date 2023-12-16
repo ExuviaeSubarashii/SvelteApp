@@ -1,3 +1,4 @@
+import { writable } from "svelte/store";
 import { baseUrl } from "./store";
 type Playlist = {
   PlayListId: string;
@@ -11,16 +12,16 @@ type Playlist = {
 };
 
 type User = {
-  Id:number;
-  UserName:string;
+  Id: number;
+  UserName: string;
 
 };
 
 type Song = {
-  SongId:number;
-  SongName:string;
-  SongArtist:string;
-  AlbumName  :string;
+  SongId: number;
+  SongName: string;
+  SongArtist: string;
+  AlbumName: string;
 };
 
 
@@ -41,16 +42,16 @@ export async function Search(input: string) {
     if (!playlistResponse.ok || !userResponse.ok || !songsResponse.ok) {
       throw new Error(playlistResponse.statusText || userResponse.statusText || songsResponse.statusText);
     }
-    playlistdata = await playlistResponse.json();
-    userdata = await userResponse.json();
-    songsdata = await songsResponse.json();
-    console.log("playlistdata:", playlistdata);
-    console.log("userdata:", userdata);
-    console.log("songs:", songsdata);
+    playlistdata.set(await playlistResponse.json());
+    userdata.set(await userResponse.json());
+    songsdata.set(await songsResponse.json());
+    console.log("search playlistdata:", playlistdata);
+    console.log("search userdata:", userdata);
+    console.log("search songs:", songsdata);
   } catch (error) {
     console.error('Error:', error);
   }
 }
-export let playlistdata:any=[];
-export let userdata:any=[];
-export let songsdata:any=[];
+export const playlistdata:any = writable([]);
+export const userdata:any = writable([]);
+export const songsdata:any = writable([]);

@@ -86,7 +86,7 @@ export async function ChangeEmail(newEmail: any) {
             throw new Error(response.statusText);
         }
         const data = await response.json();
-        console.log("changed email:" + data);
+        console.log("changed email to:" + data);
         localStorage.setItem('userEmail', data.userEmail);
         window.location.href = "/"
     }
@@ -115,7 +115,7 @@ export async function ChangePassword(newPassword: string) {
             throw new Error(response.statusText);
         }
         const data = await response.json();
-        console.log("changed password:" + data);
+        console.log("changed password to:" + data);
         localStorage.setItem('userPassword', data.userPassword);
         window.location.href = "/"
     }

@@ -13,7 +13,7 @@
 	function ChangeState(playlist: any) {
 		selectedPlaylist = playlist;
 		propertyState = !propertyState;
-		console.log(propertyState);
+		console.log('playlist options:',propertyState);
 	}
 	onMount(() => {
 		const unsubscribe = exportedplaylists.subscribe((value) => {

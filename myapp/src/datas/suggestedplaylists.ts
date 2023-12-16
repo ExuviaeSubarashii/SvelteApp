@@ -17,7 +17,7 @@ export async function GetUserSuggestedPlayLists() {
       }
       const data = await response.json();
       exportedsuggestedplaylist.set(data);
-      console.log(`suggested`,data);
+      console.log(`suggested playlists:`,data);
     } catch (error) {
       console.error('Error:', error);
     }

@@ -22,7 +22,7 @@ export async function CreatePlaylist() {
     const responseMessage=await response.text();
   responseMessageStore.set(responseMessage);
 
-console.log("returned:", responseMessage);
+console.log("returned message:", responseMessage);
 if(responseMessage==="Created"){
   GetUserPlayLists();
   GetUserSuggestedPlayLists();
@@ -90,7 +90,8 @@ export async function UpdatePlaylistName(playlistId: unknown, newPlaylistName: s
     }
     const responseMessage=await response.text();
   responseMessageStore.set(responseMessage);
-    console.log(responseMessage);
+  console.log("returned message:", responseMessage);
+
   return responseMessage;
 
   } catch (error) {
@@ -104,7 +105,7 @@ export async function UpdatePlayListContents(playlistid: string, playListContent
     playListContents: playListContents.toString(),
     updateWay: "Add Content"
   }
-  console.log(body);
+  console.log("add content body:",body);
   try {
     const requestOptions = {
       method: 'POST',
@@ -117,7 +118,8 @@ export async function UpdatePlayListContents(playlistid: string, playListContent
     }
     const responseMessage=await response.text();
   responseMessageStore.set(responseMessage);
-    console.log(responseMessage);
+  console.log("returned message:", responseMessage);
+
   return responseMessage;
 
   } catch (error) {
@@ -125,8 +127,8 @@ export async function UpdatePlayListContents(playlistid: string, playListContent
   }
 }
 export async function RemovePlaylistContents(playlistid:string,songId:string){
- console.log("playlistiddata:",playlistid) 
- console.log("playlistsongdata:",songId); 
+ console.log("remove content playlistiddata:",playlistid) 
+ console.log("remove content playlistsongid:",songId); 
  const body={
   playListId:playlistid,
   playListContents:songId.toString(),
@@ -144,7 +146,8 @@ export async function RemovePlaylistContents(playlistid:string,songId:string){
   }
   const responseMessage=await response.text();
   responseMessageStore.set(responseMessage);
-  console.log(responseMessage);
+  console.log("returned message:", responseMessage);
+
   return responseMessage;
 } catch (error) {
   console.error('Error:', error);

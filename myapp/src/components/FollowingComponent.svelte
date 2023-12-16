@@ -4,7 +4,7 @@
 	import { GetFollowings, following } from '../datas/followmanager';
 
 	export var followid: any;
-	console.log('follower data:' + followid);
+	console.log('following data:' + followid);
 	onMount(() => GetFollowings(followid));
 </script>
 

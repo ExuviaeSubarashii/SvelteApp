@@ -21,7 +21,7 @@ export async function FindSongs(){
         }
         const data = await response.json();
         songs=data;
-        console.log(`songs:`,songs);
+        console.log(`find songs:`,songs);
       } catch (error) {
         console.error('Error:', error);
       }

@@ -12,7 +12,8 @@
 	}
 	async function onComponentMount() {
 		await GetUserPropertiesByToken();
-		userprops = userPropertiesbytoken;
+		userprops = $userPropertiesbytoken;
+		console.log('current user properties:',userprops)
 	}
 
 	onMount(onComponentMount);
@@ -23,7 +24,7 @@
 		<span>Hover me</span>
 		<div class="dropdown-content">
 			<a href="/account" target="_blank">Account <i class="bx bxs-right-top-arrow-circle" /></a>
-			<minidenticon-svg username={userPropertiesbytoken.userName} saturation="50" lightness="50" />
+			<minidenticon-svg username={userprops.userName} saturation="50" lightness="50" />
 			<a href="/user/{encodeURIComponent(userprops.userId)}">Profile</a>
 			<span>Private Session</span>
 			<a href="/user/settings">Settings</a>
@@ -35,8 +36,8 @@
 
 <style>
 	minidenticon-svg {
-		width: 90px;
-		height: 90px;
+		width: 	50px;
+		height: 50px;
 		border-radius: 50%;
 		background-color: transparent;
 		margin: 5px;

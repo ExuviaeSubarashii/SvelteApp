@@ -1,26 +1,32 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
     import { page } from '$app/stores';
-	import { Search } from "../../datas/search";
+	import SearchResultsComponent from "../../components/SearchResultsComponent.svelte";
+	import { Search, playlistdata, songsdata, userdata } from "../../datas/search";
 let text='';
-async function GotoThatPage(){
-const route=`${$page.url}/${text}`
-await goto(route);
-}
+// async function GotoThatPage(){
+// const route=`${$page.url}/${text}`
+// await goto(route);
+// }
+
 </script>
 <slot/>
 
 <div class="fullbody">
     <div class="search">
         <input class="search-input" placeholder="What do you want to listen to?"
-        bind:value={text}>
-        <button on:click={GotoThatPage}>Search</button>
+        bind:value={text} on:input={()=>Search(text)}>
+        <!-- <button on:click={()=}>Search</button> -->
     </div>
     <div>
         Browse All
     </div>
 </div>
-
+{#key text}
+    
+<SearchResultsComponent searchtext={text}/>
+{/key}
+<slot/>
 
 <style>
 .fullbody{

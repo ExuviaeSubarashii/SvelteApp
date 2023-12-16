@@ -19,8 +19,8 @@ function PopUpPlaylists(){
     const unsubscribe = exportedplaylists.subscribe((value) => {
     playlists = value;
     });
-    console.log(playlists);
-    console.log(userIdValue);
+    console.log('users playlist:',playlists);
+    console.log('current user id:',userIdValue);
 
     return unsubscribe;
 }

@@ -1,7 +1,7 @@
 import { baseUrl } from "../datas/store";
 
 export async function SetCurrentSong(songId:any){
-    console.log(songId);
+    console.log('setting current song:',songId);
     const requestOptions = {
         method: 'POST',
         body: JSON.stringify(songId),
@@ -13,7 +13,7 @@ export async function SetCurrentSong(songId:any){
         if (!response.ok) {throw new Error(response.statusText);}
         const data = await response.json();
         songProperties = data;
-        console.log(`songContents:`,songProperties);
+        console.log(`currently playing songContents:`,songProperties);
       } 
       catch (error) 
       {console.error('Error:', error);}

@@ -1,4 +1,5 @@
 import { baseUrl } from "../datas/store";
+import userTokenValue from "./user";
 
 export var followers:any=[{
   userName:"",
@@ -63,4 +64,47 @@ export async function GetFollowings(userId:any){
       } catch (error) {
         console.error('Error:', error);
       }
+}
+
+
+export async function FollowUser(userId:any){
+const body={
+  userToken:userTokenValue,
+  targetUserId:userId
+}
+const requestOptions = {
+  method: 'POST',
+  body: JSON.stringify(body),
+  headers: { 'Content-Type': 'application/json' },
+};
+const response=await fetch(`${baseUrl}/User/FollowUser`,requestOptions);
+
+if (!response.ok) {
+  throw new Error(response.statusText);
+}
+console.log('user followed:',userId)
+}
+
+
+
+export async function UnFollowUser(userId:any){
+  const body={
+    userToken:userTokenValue,
+    targetUserId:userId
+  } 
+  const requestOptions = {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: { 'Content-Type': 'application/json' },
+  };
+  try {
+    const response=await fetch(`${baseUrl}/User/UnFollowUser`,requestOptions);
+if (!response.ok) {
+  throw new Error(response.statusText);
+}
+console.log('user unfollowed:',userId);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+
 }

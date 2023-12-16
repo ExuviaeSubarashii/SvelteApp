@@ -14,7 +14,7 @@
       }
       const data = await response.json();
       exportedplaylistcontents.set(data);
-      console.log(data);
+      console.log('get all songs:',data);
     } catch (error) {
       console.error('Error:', error);
       return [];

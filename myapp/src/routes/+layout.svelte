@@ -1,12 +1,10 @@
 <script>
-
-	import SideBarContent from "../components/SideBarContent.svelte";
-	import UserComponent from "../components/UserComponent.svelte";
-
+	import SideBarContent from '../components/SideBarContent.svelte';
+	import UserComponent from '../components/UserComponent.svelte';
 </script>
-<slot/>
-<aside>
-	<SideBarContent/>
-</aside>
-<UserComponent/>
 
+<slot />
+<aside>
+	<SideBarContent />
+</aside>
+<UserComponent />

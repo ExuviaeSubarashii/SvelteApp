@@ -1,68 +1,87 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import { GetUserPropertiesById, userPropertiesbyid } from "../datas/userproperties";
-	  export let profileid:any;
-    var userprops:any=[];
-    async function onComponentMount() {
-      await GetUserPropertiesById(profileid);
-      userprops=userPropertiesbyid;
-    }
-  
-    onMount(onComponentMount);
-  
-    $: userName = userprops.userName;
-    $: followers = userprops.followers;
-    $: following = userprops.following;
-  </script>
-  
-  <div>
-    <div class="profile-prop" role="row">
-      <h4>Profile</h4>
-      {#await onComponentMount then}
-      <div class="user-specific">
-      <h1 style="font-size: 25px;">{userName}</h1>
-      <minidenticon-svg style="height:10px; width:10px;" username="{userName}" saturation="60" lightness="50"></minidenticon-svg>
-        <p><a href="/follows/{encodeURIComponent(profileid)}">{"Followers: " + followers}</a></p>
-        <p><a href="/following/{encodeURIComponent(profileid)}">{"Following: " + following}</a></p>
-      </div>
-      {/await}
-    </div>
-  </div>
-  
-  <style>
-    .profile-prop {
-      position: absolute;
-      color: white;
-      top: 150px;
-      left: 950px;
-      background-color: gray;
-      align-items: center;
-    }
-  
-    .profile-prop p {
-      font-size: 30px;
-      text-align: center;
-    }
-  
-    .profile-prop h4 {
-      font-size: 30px;
-    }
-  
-    .profile-prop h1 {
-      font-size: 150px;
-      text-align: center;
-    }
-  
-    .profile-prop a {
-      text-decoration: none;
-      color: lightgray;
-    }
-    .user-specific{
-    background-color: #44444411;
-    width: 350px;
-    white-space: nowrap;
-    cursor: pointer;
-    left: 100px;
-}
-  </style>
-  
+	import { onMount } from 'svelte';
+	import { GetUserPropertiesById, userPropertiesbyid, userPropertiesbytoken } from '../datas/userproperties';
+	import { userId } from '../datas/user';
+	import { FollowUser, UnFollowUser } from '../datas/followmanager';
+	export let profileid: any;
+	var userprops: any = [];
+	var currentuserid:any="";
+	
+	onMount(async () => {
+		await GetUserPropertiesById(profileid);
+		userprops = userPropertiesbyid;
+		const unsubscribe = userPropertiesbytoken.subscribe((value) => {
+			currentuserid=value;
+		console.log("bombaclat",currentuserid);
+		});
+	});
+
+	$: userName = userprops.userName;
+	$:userid=userprops.userId;
+	$: followers = userprops.followers;
+	$: following = userprops.following;
+  $:isFollowing=userprops.isFollowing;
+</script>
+
+<div>
+	<div class="profile-prop">
+		<div style="display: grid;grid-auto-flow: column;">
+			<h4>Profile</h4>
+			{#if currentuserid.userId!=profileid}
+			{#if isFollowing===true}
+			<button on:click={()=>UnFollowUser(userid)}>Following</button>
+			{:else}
+			<button on:click={()=>FollowUser(userid)}>Follow</button>
+			{/if}
+			{/if}
+		</div>
+		<div class="user-specific">
+			<h1>{userName}</h1>
+			<minidenticon-svg
+				style="height:10px; width:10px;"
+				username={userName}
+				saturation="60"
+				lightness="50"
+			/>
+			<p><a href="/follows/{encodeURIComponent(profileid)}">{'Followers: ' + followers}</a></p>
+			<p><a href="/following/{encodeURIComponent(profileid)}">{'Following: ' + following}</a></p>
+		</div>
+	</div>
+</div>
+
+<style>
+	.profile-prop {
+		position: absolute;
+		color: white;
+		top: 150px;
+		left: 950px;
+		background-color: gray;
+		align-items: center;
+	}
+
+	.profile-prop p {
+		font-size: 30px;
+		text-align: center;
+	}
+
+	.profile-prop h4 {
+		font-size: 20px;
+	}
+
+	.profile-prop h1 {
+		font-size: 50px;
+		text-align: center;
+	}
+
+	.profile-prop a {
+		text-decoration: none;
+		color: lightgray;
+	}
+	.user-specific {
+		background-color: #44444411;
+		width: 350px;
+		white-space: nowrap;
+		cursor: pointer;
+		left: 100px;
+	}
+</style>
