@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { GetUserPropertiesById, userPropertiesbyid, userPropertiesbytoken } from '../datas/userproperties';
-	import { userId } from '../datas/user';
+	import { currentUser } from '../datas/user';
 	import { FollowUser, UnFollowUser } from '../datas/followmanager';
 	export let profileid: any;
 	var userprops: any = [];

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { UpdatePlayListContents } from '../datas/playlisthandler';
     import {exportedplaylists} from '../datas/playlists'
-	import { userIdValue } from '../datas/user';
+	import { currentUser } from '../datas/user';
     let showprops=false;
     let popupplaylists=false;
     export let songId:string;
@@ -20,7 +20,7 @@ function PopUpPlaylists(){
     playlists = value;
     });
     console.log('users playlist:',playlists);
-    console.log('current user id:',userIdValue);
+    console.log('current user id:',currentUser.userId);
 
     return unsubscribe;
 }
@@ -37,7 +37,7 @@ function PopUpPlaylists(){
 {#if popupplaylists}
     {#each playlists as playlist}
 
-    {#if playlist.playListOwnerId==userIdValue}
+    {#if playlist.playListOwnerId==currentUser.userId}
 
     <button on:click={()=>{UpdatePlayListContents(playlist.playListId,songId)}}>
         <p>{playlist.playListTitle}</p>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { userEmailValue } from "../datas/user";
+	import { currentUser } from "../datas/user";
 import { userPropertiesbytoken } from "../datas/userproperties";
 import {ChangeEmail} from '../datas/useractivities';
 let newEmail:string="";
@@ -8,8 +8,8 @@ let newEmail:string="";
 <div>
 <div>
     <h2 style="color:white;">Username</h2>
-    <p style="color: white;">{userPropertiesbytoken.userName}</p>
-    <input placeholder="{userEmailValue}" bind:value={newEmail}>
+    <p style="color: white;">{currentUser.userEmail}</p>
+    <input placeholder="{currentUser.userEmail}" bind:value={newEmail}>
     <br>
     <button on:click={(e)=>ChangeEmail(newEmail)}>Save Profile</button>
 </div>

@@ -1,5 +1,5 @@
 import { baseUrl } from "./store";
-import userTokenValue from "./user";
+import {currentUser} from "./user";
 
 
 export function LogOut() {
@@ -70,7 +70,7 @@ export function Register(email: string, password: string, username: string) {
 export async function ChangeEmail(newEmail: any) {
     const user = {
         newEmail: newEmail,
-        userToken: userTokenValue
+        userToken: currentUser.userToken
     };
     const requestOptions = {
         method: 'POST',
@@ -99,7 +99,7 @@ export async function ChangeEmail(newEmail: any) {
 export async function ChangePassword(newPassword: string) {
     const user = {
         newPassword: newPassword,
-        userToken: userTokenValue
+        userToken: currentUser.userToken
     };
     const requestOptions = {
         method: 'POST',

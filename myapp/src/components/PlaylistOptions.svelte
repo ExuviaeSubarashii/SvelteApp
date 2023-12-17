@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { DeleteFromJustYourLibrary, DeletePlaylist } from '../datas/playlisthandler';
-	import { userIdValue } from '../datas/user';
+	import { currentUser } from '../datas/user';
 	export let playlistId: any;
     export let playlistOwner:any;
 </script>
-{#if playlistOwner==userIdValue}
+{#if playlistOwner==currentUser.userId}
     
 <div class="options">
     <div class="delete">

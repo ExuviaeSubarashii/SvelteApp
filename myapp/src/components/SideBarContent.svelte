@@ -1,5 +1,5 @@
 <script lang="ts">
-	import userTokenValue from '../datas/user';
+	import { currentUser } from '../datas/user';
 	import { howgood } from '../datas/gettoday';
 	import PlayBar from '../components/PlayBar.svelte';
 	import { showComponent } from '../datas/store';
@@ -13,6 +13,7 @@
 	} from '../datas/playlists';
 	let plname = '';
 	let normalSize=false;
+	console.log("Currently logged in as:",currentUser);
 	function MinimizeLibrary() {
 		const sidebarDiv = document.getElementById('fullbody');
 		let normalWidth="300px";
@@ -33,7 +34,7 @@
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
 <div class="fullbody" id="fullbody">
-	{#if userTokenValue}
+	{#if currentUser.userToken!=="undefined"}
 		<div class="fixed-tops">
 			<p id="howgood">{howgood}</p>
 			<!-- svelte-ignore a11y-label-has-associated-control -->

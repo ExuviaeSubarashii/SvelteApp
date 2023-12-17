@@ -1,5 +1,5 @@
 import { baseUrl } from "../datas/store";
-import userTokenValue from "./user";
+import currentUser from "./user";
 
 export var followers:any=[{
   userName:"",
@@ -69,7 +69,7 @@ export async function GetFollowings(userId:any){
 
 export async function FollowUser(userId:any){
 const body={
-  userToken:userTokenValue,
+  userToken:currentUser.userToken,
   targetUserId:userId
 }
 const requestOptions = {
@@ -89,7 +89,7 @@ console.log('user followed:',userId)
 
 export async function UnFollowUser(userId:any){
   const body={
-    userToken:userTokenValue,
+    userToken:currentUser.userToken,
     targetUserId:userId
   } 
   const requestOptions = {

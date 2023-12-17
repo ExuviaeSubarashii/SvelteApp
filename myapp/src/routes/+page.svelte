@@ -3,12 +3,12 @@
 	import SideBarContent from '../components/SideBarContent.svelte';
 	import SuggestedPlayLists from '../components/SuggestedPlayLists.svelte';
 	import UserComponent from '../components/UserComponent.svelte';
-	import userTokenValue from '../datas/user';
+	import { currentUser } from '../datas/user';
 	import { exportedsuggestedplaylist } from '../datas/suggestedplaylists';
 	import ResponseMessageComponent from '../components/ResponseMessageComponent.svelte';
 </script>
 <!-- <SideBarContent/> -->
-{#if userTokenValue}
+{#if currentUser.userToken}
 	<div class="centered-div">
 		{#key exportedsuggestedplaylist}
 			<SuggestedPlayLists />

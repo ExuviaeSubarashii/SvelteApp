@@ -1,13 +1,13 @@
 import { writable } from "svelte/store";
 import { baseUrl } from "./store";
-import userTokenValue from "./user";
+import currentUser from "./user";
 
 export async function GetUserSuggestedPlayLists() {
 
 
     const requestOptions = {
       method: 'POST',
-      body: JSON.stringify(userTokenValue),
+      body: JSON.stringify(currentUser.userToken),
       headers: { 'Content-Type': 'application/json' },
     };
     try {

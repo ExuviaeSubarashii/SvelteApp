@@ -1,4 +1,4 @@
-import userTokenValue, { userIdValue } from "./user";
+import { currentUser } from "./user";
 import { baseUrl } from "../datas/store";
 import { writable } from "svelte/store";
 
@@ -18,7 +18,7 @@ export let userPropertiesbyid:any={
 export async function GetUserPropertiesByToken(){
     const requestOptions = {
         method: 'POST',
-        body: JSON.stringify(userTokenValue),
+        body: JSON.stringify(currentUser.userToken),
         headers: { 'Content-Type': 'application/json' },
       };
       try {
@@ -34,8 +34,6 @@ export async function GetUserPropertiesByToken(){
         //   userId:data.userId
         // };
         userPropertiesbytoken.set(data);
-        console.log("useridvaluefromts:"+userIdValue)
-        console.log(`currentlly logged in user:`,userPropertiesbytoken);
       } catch (error) {
         console.error('Error:', error);
       }
@@ -44,7 +42,7 @@ export const userPropertiesbytoken=writable('');
 export async function GetUserPropertiesById(userId:any){
   console.log("userid of the profile",userId)
   const body={
-    CurrentViewerUserToken:userTokenValue,
+    CurrentViewerUserToken:currentUser.userToken,
     CurrentlyViewedUserProfileId:userId
   }
     const requestOptions = {

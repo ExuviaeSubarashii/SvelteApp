@@ -1,4 +1,4 @@
-import {userTokenValue} from '../datas/user';
+import {currentUser} from '../datas/user';
 import playlistType from "../components/SideBarContent.svelte";
 import { baseUrl } from "../datas/store";
 import { writable } from 'svelte/store';
@@ -6,7 +6,7 @@ import { writable } from 'svelte/store';
     export async function GetUserPlayLists() {
         
       const body={
-        userToken:userTokenValue,
+        userToken:currentUser.userToken,
         playlistType:playlistType||null
       }
       const requestOptions = {
@@ -52,7 +52,7 @@ import { writable } from 'svelte/store';
     export async function GetPodcasts(playlistType:string){
 
       const body={
-        userToken:userTokenValue,
+        userToken:currentUser.userToken,
         playlistType:playlistType
       }
       const requestOptions = {

@@ -1,4 +1,4 @@
-import userTokenValue from "./user";
+import currentUser from "./user";
 import { baseUrl } from "../datas/store";
 import { GetUserPlayLists, exportedplaylists } from "./playlists";
 import { GetUserSuggestedPlayLists } from "./suggestedplaylists";
@@ -6,7 +6,7 @@ import { writable } from "svelte/store";
 
 export async function CreatePlaylist() {
   const body = {
-    userToken: userTokenValue
+    userToken: currentUser.userToken
   }
   const requestOptions = {
     method: 'POST',
@@ -34,7 +34,7 @@ if(responseMessage==="Created"){
 export async function DeletePlaylist(playlistId: any) {
   const body={
     playlistId:playlistId,
-    userToken:userTokenValue
+    userToken:currentUser.userToken
   }
   const requestOptions = {
     method: 'POST',
@@ -55,7 +55,7 @@ export async function DeletePlaylist(playlistId: any) {
 export async function DeleteFromJustYourLibrary(playlistId: any) {
   const body={
     playlistId:playlistId,
-    userToken:userTokenValue
+    userToken:currentUser.userToken
   }
   const requestOptions = {
     method: 'POST',
