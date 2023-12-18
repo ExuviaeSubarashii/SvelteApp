@@ -4,9 +4,9 @@ var userTokenValue:any;
 var userIdValue:any;
 var userEmailValue:any;
 // Initialize the store with a default value
-const usertoken = writable(browser ? localStorage.getItem("usertoken") || undefined : undefined);
-const userId = writable(browser ? localStorage.getItem("userId") || undefined : undefined);
-const userEmail = writable(browser ? localStorage.getItem("userEmail") || undefined : undefined);
+const usertoken = writable(browser ? localStorage.getItem("usertoken") || undefined:undefined);
+const userId = writable(browser ? localStorage.getItem("userId") || undefined :undefined);
+const userEmail = writable(browser ? localStorage.getItem("userEmail") || undefined:undefined);
 
 usertoken.subscribe((val) => {
   if (browser) {
@@ -30,7 +30,8 @@ userId.subscribe((val) => {
   export const currentUser={
     userToken:userTokenValue,
     userEmail:userEmailValue,
-    userId:userIdValue
+    userId:userIdValue,
+    isLoggedIn:userTokenValue!==undefined&&userTokenValue!=="undefined"
   }
 
   export default currentUser;

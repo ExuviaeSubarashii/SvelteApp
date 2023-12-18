@@ -1,15 +1,21 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { GetSongs, exportedplaylistcontents } from '../datas/songs';
+	import { GetSongs, exportedplaylistcontents, isFavorited } from '../datas/songs';
 	import { SetCurrentSong } from '../datas/listening';
 	import { showComponent } from '../datas/store';
-	import { RemovePlaylistContents } from '../datas/playlisthandler';
+	import { AddPlaylistToFavorite, RemovePlaylistContents, responseMessageStore } from '../datas/playlisthandler';
+	import currentUser from '../datas/user';
+	import { ReturnIfUserIsNotLoggedIn } from '../datas/responseMessage';
 	var songs: any = [];
 	export let exportedIdfromdata: any = '';
 	export async function recreateComponent(songId: any) {
-		$showComponent = !$showComponent;
-		await SetCurrentSong(songId);
-		$showComponent = !$showComponent;
+		if (currentUser.isLoggedIn) {
+			$showComponent = !$showComponent;
+			await SetCurrentSong(songId);
+			$showComponent = !$showComponent;
+		} else {
+			await ReturnIfUserIsNotLoggedIn('Must be logged in');
+		}
 	}
 	onMount(() => {
 		GetSongs(exportedIdfromdata);
@@ -19,8 +25,12 @@
 		return unsubscribe;
 	});
 </script>
-
 <div class="song-list-container" role="row" aria-rowindex="1">
+	{#if $isFavorited}
+  <h1>Alread Favorited</h1>
+{:else}
+  <button on:click={() => AddPlaylistToFavorite(exportedIdfromdata)}>Add to favorites</button>
+{/if}
 	{#if songs.length > 0}
 		{#each songs as song}
 			<div class="song-container" id={song.songId}>
@@ -47,10 +57,14 @@
 						<p class="label">Album Name:</p>
 						<p class="data">{song.albumName}</p>
 					</div>
-					<button on:click={() => {
-						RemovePlaylistContents(exportedIdfromdata, song.songId)
-					}}
-						><i class="bx bx-x" /></button>
+					{#if currentUser.isLoggedIn}
+						
+					<button
+					on:click={() => {
+						RemovePlaylistContents(exportedIdfromdata, song.songId);
+					}}><i class="bx bx-x" /></button
+					>
+					{/if}
 				</div>
 			</div>
 		{/each}

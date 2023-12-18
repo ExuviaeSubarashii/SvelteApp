@@ -63,7 +63,6 @@ export async function GetUserPropertiesById(userId:any){
           userId:data.userId,
           isFollowing:data.isFollowing
         };
-        console.log(`userPropertiesbyid:`,userPropertiesbyid);
       } catch (error) {
         console.error('Error:', error);
       }

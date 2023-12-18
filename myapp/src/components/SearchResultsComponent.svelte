@@ -22,7 +22,7 @@
 			{#each $playlistdata as playlist}
 				<div class="playlist">
 					<minidenticon-svg username={playlist.playListTitle.trim()} />
-					<p><a href="/">{playlist.playListTitle.trim()}</a></p>
+					<p><a href="/songs/{playlist.playListId}">{playlist.playListTitle.trim()}</a></p>
 				</div>
 			{/each}
 		</div>
@@ -54,7 +54,7 @@
 			{#each $userdata as user}
 			<div class="user">
 				<minidenticon-svg username={user.userName} />
-				<p><a href="/user/{user.id}" target="_blank">{user.userName.trim()}</a></p>
+				<p><a href="/user/{user.id}">{user.userName.trim()}</a></p>
 			</div>
 			{/each}
 		</div>
@@ -80,16 +80,28 @@
 	.songs,
 	.playlists {
 		display: flex;
+		flex-direction: row;
 		align-content: center;
 		align-items: center;
-		overflow: hidden;
+		overflow: auto;
+		max-height: 550px;
+		overflow-x: auto;
+
+	}
+	.user,
+	.song,
+	.playlist{
+		align-content: center;
+		text-align: center;
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		width: 550px;
+		background-color: #121212;
 	}
 	.user,
 	.song,
 	.playlist,a  {
-		background-color: gray;
-		border-radius: 20px;
-		border-style: solid;
 		text-decoration: none;
 		color:white;
 		border-color: purple;

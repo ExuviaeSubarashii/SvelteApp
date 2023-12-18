@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import userTokenValue from '../datas/user';
 	import { GetUserPropertiesByToken, userPropertiesbytoken } from '../datas/userproperties';
 	import { LogOut } from '../datas/useractivities';
 	import { minidenticon } from 'minidenticons';
-	import ResponseMessageComponent from './ResponseMessageComponent.svelte';
 	var userprops: any = [];
 	let isToggled: any = false;
 	function handleClick() {
@@ -13,7 +11,6 @@
 	async function onComponentMount() {
 		await GetUserPropertiesByToken();
 		userprops = $userPropertiesbytoken;
-		console.log('current user properties:',userprops)
 	}
 
 	onMount(onComponentMount);
@@ -23,7 +20,7 @@
 	<div class="dropdown">
 		<span>Hover me</span>
 		<div class="dropdown-content">
-			<a href="/account" target="_blank">Account <i class="bx bxs-right-top-arrow-circle" /></a>
+			<a href="/account">Account <i class="bx bxs-right-top-arrow-circle" /></a>
 			<minidenticon-svg username={userprops.userName} saturation="50" lightness="50" />
 			<a href="/user/{encodeURIComponent(userprops.userId)}">Profile</a>
 			<span>Private Session</span>

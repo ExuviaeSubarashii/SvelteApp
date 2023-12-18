@@ -12,7 +12,7 @@
 		userprops = userPropertiesbyid;
 		const unsubscribe = userPropertiesbytoken.subscribe((value) => {
 			currentuserid=value;
-		console.log("bombaclat",currentuserid);
+		console.log("Currently visited profile:",userprops);
 		});
 	});
 
@@ -27,7 +27,7 @@
 	<div class="profile-prop">
 		<div style="display: grid;grid-auto-flow: column;">
 			<h4>Profile</h4>
-			{#if currentuserid.userId!=profileid}
+			{#if currentuserid.userId!=profileid&&currentUser.isLoggedIn}
 			{#if isFollowing===true}
 			<button on:click={()=>UnFollowUser(userid)}>Following</button>
 			{:else}

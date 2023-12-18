@@ -8,16 +8,12 @@
 	import ResponseMessageComponent from '../components/ResponseMessageComponent.svelte';
 </script>
 <!-- <SideBarContent/> -->
-{#if currentUser.userToken}
+
 	<div class="centered-div">
 		{#key exportedsuggestedplaylist}
 			<SuggestedPlayLists />
 		{/key}
 	</div>
-
-
-	
-{/if}
 
 <style>
 	.centered-div {

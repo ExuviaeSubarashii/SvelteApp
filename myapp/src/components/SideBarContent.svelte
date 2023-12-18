@@ -34,7 +34,7 @@
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
 <div class="fullbody" id="fullbody">
-	{#if currentUser.userToken!=="undefined"}
+	{#if currentUser.isLoggedIn===true}
 		<div class="fixed-tops">
 			<p id="howgood">{howgood}</p>
 			<!-- svelte-ignore a11y-label-has-associated-control -->
@@ -75,12 +75,29 @@
 			{/key}
 		</div>
 	{:else}
-		<button><a href="login">Login</a></button>
-		<button><a href="register">Register</a></button>
+	<div class="login-register">
+		<button><a href="/login">Login</a></button>
+		<label style="color:gray;"><a href="/"> <i class="bx bx-home" />Home</a></label>
+		<button><a href="/register">Register</a></button>
+	</div>
 	{/if}
 </div>
 
 <style>
+	.login-register{
+		padding: 0;
+	}
+	.login-register button{
+		padding-inline-start: 8px
+	}
+	.login-register a{
+		text-decoration: none; 
+		color:lightgray;
+	}
+	.login-register a:hover{
+		color:purple;
+	}
+
 	::-webkit-scrollbar {
 		width: 15px;
 	}

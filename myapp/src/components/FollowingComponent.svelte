@@ -14,7 +14,7 @@
 		{#each following as follow}
 			<div class="user-specific">
 				<minidenticon-svg username={follow.userName.trim()} />
-				<p><a href="/user/{follow.userId}" target="_blank">{follow.userName}</a></p>
+				<p><a href="/user/{follow.userId}">{follow.userName}</a></p>
 			</div>
 		{/each}
 	{/await}

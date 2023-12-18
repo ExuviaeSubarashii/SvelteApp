@@ -45,9 +45,6 @@ export async function Search(input: string) {
     playlistdata.set(await playlistResponse.json());
     userdata.set(await userResponse.json());
     songsdata.set(await songsResponse.json());
-    console.log("search playlistdata:", playlistdata);
-    console.log("search userdata:", userdata);
-    console.log("search songs:", songsdata);
   } catch (error) {
     console.error('Error:', error);
   }

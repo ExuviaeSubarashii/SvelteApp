@@ -11,9 +11,9 @@
 			isVisible.set(true);
 			setTimeout(() => {
 			isVisible.set(false)
+			responseMessageStore.set('');
 		}, 1000);
 		})
-		return unsubscribe;
 	})
 </script>
 {#key $responseMessageStore}
