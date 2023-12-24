@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { userEmailValue } from '../datas/user';
-	import { userPropertiesbytoken } from '../datas/userproperties';
 	import { ChangePassword } from '../datas/useractivities';
 	let newPassword: string = '';
 	let newPasswordAgain: string = '';

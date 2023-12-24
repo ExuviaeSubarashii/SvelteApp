@@ -1,38 +1,38 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { GetUserPropertiesById, userPropertiesbyid, userPropertiesbytoken } from '../datas/userproperties';
+	import {
+		GetUserPropertiesById,
+		userPropertiesbyid,
+		userPropertiesbytoken
+	} from '../datas/userproperties';
 	import { currentUser } from '../datas/user';
 	import { FollowUser, UnFollowUser } from '../datas/followmanager';
 	export let profileid: any;
 	var userprops: any = [];
-	var currentuserid:any="";
-	
+
 	onMount(async () => {
 		await GetUserPropertiesById(profileid);
 		userprops = userPropertiesbyid;
-		const unsubscribe = userPropertiesbytoken.subscribe((value) => {
-			currentuserid=value;
-		console.log("Currently visited profile:",userprops);
-		});
+		console.log('Currently visited profile:', userprops);
 	});
 
 	$: userName = userprops.userName;
-	$:userid=userprops.userId;
+	$: userid = userprops.userId;
 	$: followers = userprops.followers;
 	$: following = userprops.following;
-  $:isFollowing=userprops.isFollowing;
+	$: isFollowing = userprops.isFollowing;
 </script>
 
 <div>
 	<div class="profile-prop">
 		<div style="display: grid;grid-auto-flow: column;">
 			<h4>Profile</h4>
-			{#if currentuserid.userId!=profileid&&currentUser.isLoggedIn}
-			{#if isFollowing===true}
-			<button on:click={()=>UnFollowUser(userid)}>Following</button>
-			{:else}
-			<button on:click={()=>FollowUser(userid)}>Follow</button>
-			{/if}
+			{#if $userPropertiesbytoken.userId != profileid && currentUser.isLoggedIn}
+				{#if isFollowing === true}
+					<button on:click={() => UnFollowUser(userid)}>Following</button>
+				{:else}
+					<button on:click={() => FollowUser(userid)}>Follow</button>
+				{/if}
 			{/if}
 		</div>
 		<div class="user-specific">

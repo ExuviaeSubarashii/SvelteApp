@@ -4,17 +4,7 @@
 	export let playlistId: any;
     export let playlistOwner:any;
 </script>
-{#if playlistOwner==currentUser.userId}
-    
-<div class="options">
-    <div class="delete">
-        <button on:click={() => DeletePlaylist(playlistId)}>Delete</button>
-	</div>
-	<div class="edit">
-        <button>Edit Properties</button>
-	</div>
-</div>
-{:else}
+
 <div>
     <div class="options">
         <div class="remove">
@@ -22,7 +12,6 @@
         </div>
     </div>
 </div>
-{/if}
 
 <style>
 	.options button {

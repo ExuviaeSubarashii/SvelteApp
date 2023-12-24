@@ -27,7 +27,13 @@ userId.subscribe((val) => {
   userEmail.subscribe(($userEmail)=>{
     userEmailValue=$userEmail;
   })
-  export const currentUser={
+  type User={
+    userToken:string,
+    userEmail:string,
+    userId:string,
+    isLoggedIn:boolean
+  }
+  export const currentUser:User={
     userToken:userTokenValue,
     userEmail:userEmailValue,
     userId:userIdValue,

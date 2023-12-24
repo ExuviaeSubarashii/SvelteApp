@@ -1,21 +1,23 @@
 import { currentUser } from "./user";
 import { baseUrl } from "../datas/store";
 import { writable } from "svelte/store";
+import type { UserById, UserByToken } from "./types";
 
-// export let userPropertiesbytoken:any={
-//   userName:"",
-//   following:"",
-//   followers:"",
-//   userId:""
-// };
-export let userPropertiesbyid:any={
+export let userPropertiesbyid:UserById={
   userName:"",
   following:"",
   followers:"",
-  userId:"",
-  isFollowing:""
+  userId:0,
+  isFollowing:false
 };
+export const userPropertiesbytoken=writable<UserByToken>({
+  userName: "",
+  following: "",
+  followers: "",
+  userId: 0
+});
 export async function GetUserPropertiesByToken(){
+  if(currentUser.isLoggedIn){
     const requestOptions = {
         method: 'POST',
         body: JSON.stringify(currentUser.userToken),
@@ -26,19 +28,13 @@ export async function GetUserPropertiesByToken(){
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-        const data = await response.json();
-        // userPropertiesbytoken = {
-        //   userName: data.userName,
-        //   followers: data.followers,
-        //   following: data.following,
-        //   userId:data.userId
-        // };
+        const data:UserByToken = await response.json();
         userPropertiesbytoken.set(data);
       } catch (error) {
         console.error('Error:', error);
       }
+} 
 }
-export const userPropertiesbytoken=writable('');
 export async function GetUserPropertiesById(userId:any){
   console.log("userid of the profile",userId)
   const body={
@@ -55,7 +51,7 @@ export async function GetUserPropertiesById(userId:any){
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-        const data = await response.json();
+        const data:UserById = await response.json();
         userPropertiesbyid = {
           userName: data.userName,
           followers: data.followers,

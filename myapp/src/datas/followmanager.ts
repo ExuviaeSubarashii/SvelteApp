@@ -1,16 +1,11 @@
 import { baseUrl } from "../datas/store";
+import type { FollowType } from "./types";
 import currentUser from "./user";
 
-export var followers:any=[{
-  userName:"",
-  userId:"",
-  requestType:"Followers"
-}];
-export var following:any=[{
-  userName:"",
-  userId:"",
-  requestType:"Following"
-}];
+
+export var followers:FollowType[]=[];
+export var following:FollowType[]=[];
+
 export async function GetFollowers(userId?:any){
     const request={
         userId:userId
@@ -21,11 +16,11 @@ export async function GetFollowers(userId?:any){
         headers: { 'Content-Type': 'application/json' },
       };
       try {
-        const response = await fetch(`${baseUrl}/User/GetUserFollowers`, requestOptions);
-        if (!response.ok) {
-          throw new Error(response.statusText);
+        const followerResponse = await fetch(`${baseUrl}/User/GetUserFollowers`, requestOptions);
+        if (!followerResponse.ok) {
+          throw new Error(followerResponse.statusText);
         }
-        const data = await response.json();
+        const data = await followerResponse.json();
         followers = data.map((follower: { userName: any; userId: any; }) => {
             return {
               userName: follower.userName,
@@ -48,11 +43,11 @@ export async function GetFollowings(userId:any){
         headers: { 'Content-Type': 'application/json' },
       };
       try {
-        const response = await fetch(`${baseUrl}/User/GetUserFollowings`, requestOptions);
-        if (!response.ok) {
-          throw new Error(response.statusText);
+        const followingResponse = await fetch(`${baseUrl}/User/GetUserFollowings`, requestOptions);
+        if (!followingResponse.ok) {
+          throw new Error(followingResponse.statusText);
         }
-        const data = await response.json();
+        const data = await followingResponse.json();
         following = data.map((following: { userName: any; userId: any; }) => {
           return {
             userName: following.userName,
@@ -77,15 +72,13 @@ const requestOptions = {
   body: JSON.stringify(body),
   headers: { 'Content-Type': 'application/json' },
 };
-const response=await fetch(`${baseUrl}/User/FollowUser`,requestOptions);
+const followUserResponse=await fetch(`${baseUrl}/User/FollowUser`,requestOptions);
 
-if (!response.ok) {
-  throw new Error(response.statusText);
+if (!followUserResponse.ok) {
+  throw new Error(followUserResponse.statusText);
 }
 console.log('user followed:',userId)
 }
-
-
 
 export async function UnFollowUser(userId:any){
   const body={
@@ -98,9 +91,9 @@ export async function UnFollowUser(userId:any){
     headers: { 'Content-Type': 'application/json' },
   };
   try {
-    const response=await fetch(`${baseUrl}/User/UnFollowUser`,requestOptions);
-if (!response.ok) {
-  throw new Error(response.statusText);
+    const unFollowResponse=await fetch(`${baseUrl}/User/UnFollowUser`,requestOptions);
+if (!unFollowResponse.ok) {
+  throw new Error(unFollowResponse.statusText);
 }
 console.log('user unfollowed:',userId);
   } catch (error) {

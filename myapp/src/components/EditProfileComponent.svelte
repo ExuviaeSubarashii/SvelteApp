@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { currentUser } from "../datas/user";
-import { userPropertiesbytoken } from "../datas/userproperties";
 import {ChangeEmail} from '../datas/useractivities';
 let newEmail:string="";
 </script>

@@ -26,7 +26,7 @@
 
 <div class="scrollable-container">
 	{#if playlists.length > 0}
-		{#each playlists as playlist (playlist.playListId)}
+		{#each $exportedplaylists as playlist (playlist.playListId)}
 			<hr />
 			<div
 				class="playlistSummary"
@@ -43,7 +43,7 @@
 					>
 				</h3>
 				<minidenticon-svg width="50px" height="50px" username={playlist.playListTitle} />
-				<h4 class="playlistOwner" id={playlist.playListOwnerId}>
+				<h4 class="playlistOwner" >
 					{playlist.playListType}<i class="bx bxs-circle" />
 					{playlist.playListOwner}
 				</h4>

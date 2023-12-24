@@ -1,9 +1,10 @@
 import { writable } from "svelte/store";
 import { baseUrl } from "./store";
 import currentUser from "./user";
+import type { Playlist } from "./types";
+
 
 export async function GetUserSuggestedPlayLists() {
-
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -13,7 +14,7 @@ export async function GetUserSuggestedPlayLists() {
       if (!response.ok) {
         throw new Error(response.statusText);
       }
-      const data = await response.json();
+      const data:Playlist[] = await response.json();
       exportedsuggestedplaylist.set(data);
       console.log(`suggested playlists:`,data);
     } catch (error) {
@@ -21,4 +22,4 @@ export async function GetUserSuggestedPlayLists() {
     }
   }
 
-    export var exportedsuggestedplaylist:any=writable([]);
+    export var exportedsuggestedplaylist=writable<Playlist[]>([]);

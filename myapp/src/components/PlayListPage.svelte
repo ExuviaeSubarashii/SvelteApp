@@ -1,13 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { GetSongs, exportedplaylistcontents, isFavorited } from '../datas/songs';
+	import { GetSongs, exportedplaylistcontents} from '../datas/songs';
 	import { SetCurrentSong } from '../datas/listening';
 	import { showComponent } from '../datas/store';
-	import { AddPlaylistToFavorite, RemovePlaylistContents, responseMessageStore } from '../datas/playlisthandler';
+	import {
+		AddPlaylistToFavorite,
+		RemovePlaylistContents,
+		responseMessageStore
+	} from '../datas/playlisthandler';
 	import currentUser from '../datas/user';
 	import { ReturnIfUserIsNotLoggedIn } from '../datas/responseMessage';
+	import { GetPlaylistOwner } from '../datas/getplaylistowner';
 	var songs: any = [];
-	export let exportedIdfromdata: any = '';
+	export let currentplaylistId: any = '';
+	let isTheOwner: any;
+	let isFavorited:any;
 	export async function recreateComponent(songId: any) {
 		if (currentUser.isLoggedIn) {
 			$showComponent = !$showComponent;
@@ -17,20 +24,24 @@
 			await ReturnIfUserIsNotLoggedIn('Must be logged in');
 		}
 	}
-	onMount(() => {
-		GetSongs(exportedIdfromdata);
+	onMount(async () => {
+		GetSongs(currentplaylistId);
 		const unsubscribe = exportedplaylistcontents.subscribe((value) => {
 			songs = value;
 		});
-		return unsubscribe;
+		isTheOwner = await GetPlaylistOwner(currentplaylistId);
+		isFavorited=await GetSongs(currentplaylistId);
 	});
 </script>
+
 <div class="song-list-container" role="row" aria-rowindex="1">
-	{#if $isFavorited}
-  <h1>Alread Favorited</h1>
-{:else}
-  <button on:click={() => AddPlaylistToFavorite(exportedIdfromdata)}>Add to favorites</button>
-{/if}
+	{#if isFavorited}
+		<h1>Alread Favorited</h1>
+	{:else}
+	{#if currentUser.isLoggedIn}
+	<button on:click={() => AddPlaylistToFavorite(currentplaylistId)}>Add to favorites</button>
+	{/if}
+	{/if}
 	{#if songs.length > 0}
 		{#each songs as song}
 			<div class="song-container" id={song.songId}>
@@ -57,13 +68,8 @@
 						<p class="label">Album Name:</p>
 						<p class="data">{song.albumName}</p>
 					</div>
-					{#if currentUser.isLoggedIn}
-						
-					<button
-					on:click={() => {
-						RemovePlaylistContents(exportedIdfromdata, song.songId);
-					}}><i class="bx bx-x" /></button
-					>
+					{#if isTheOwner}	
+					<button on:click={() =>RemovePlaylistContents(currentplaylistId, song.songId)}><i class="bx bx-x" /></button>
 					{/if}
 				</div>
 			</div>

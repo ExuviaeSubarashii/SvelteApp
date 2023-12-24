@@ -3,17 +3,16 @@
 	import { GetUserPropertiesByToken, userPropertiesbytoken } from '../datas/userproperties';
 	import { LogOut } from '../datas/useractivities';
 	import { minidenticon } from 'minidenticons';
-	var userprops: any = [];
 	let isToggled: any = false;
 	function handleClick() {
 		isToggled = !isToggled;
 	}
-	async function onComponentMount() {
-		await GetUserPropertiesByToken();
-		userprops = $userPropertiesbytoken;
-	}
 
-	onMount(onComponentMount);
+	onMount(async ()=>{
+		
+		await GetUserPropertiesByToken();
+
+	});
 </script>
 
 <div class="top-right-user-component">
@@ -21,8 +20,8 @@
 		<span>Hover me</span>
 		<div class="dropdown-content">
 			<a href="/account">Account <i class="bx bxs-right-top-arrow-circle" /></a>
-			<minidenticon-svg username={userprops.userName} saturation="50" lightness="50" />
-			<a href="/user/{encodeURIComponent(userprops.userId)}">Profile</a>
+			<minidenticon-svg username={$userPropertiesbytoken.userName} saturation="50" lightness="50" />
+			<a href="/user/{encodeURIComponent($userPropertiesbytoken.userId)}">Profile</a>
 			<span>Private Session</span>
 			<a href="/user/settings">Settings</a>
 			<hr />

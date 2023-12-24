@@ -6,7 +6,6 @@ import { writable } from "svelte/store";
 
 
 export async function CreatePlaylist() {
-  if (currentUser.isLoggedIn === true) {
 
     const body = {
       userToken: currentUser.userToken
@@ -34,9 +33,8 @@ export async function CreatePlaylist() {
       console.error('Error:', error);
     }
   }
-}
+
 export async function DeletePlaylist(playlistId: any) {
-  if (currentUser.isLoggedIn === true) {
 
     const body = {
       playlistId: playlistId,
@@ -58,9 +56,8 @@ export async function DeletePlaylist(playlistId: any) {
       console.error('Error:', error);
     }
   }
-}
+
 export async function DeleteFromJustYourLibrary(playlistId: any) {
-  if (currentUser.isLoggedIn === true) {
 
     const body = {
       playlistId: playlistId,
@@ -81,9 +78,8 @@ export async function DeleteFromJustYourLibrary(playlistId: any) {
       console.error('Error:', error);
     }
   }
-}
+
 export async function UpdatePlaylistName(playlistId: unknown, newPlaylistName: string) {
-  if (currentUser.isLoggedIn === true) {
     const body = {
       playlistId: playlistId,
       newPlaylistName: newPlaylistName,
@@ -109,11 +105,10 @@ export async function UpdatePlaylistName(playlistId: unknown, newPlaylistName: s
       console.error('Error:', error);
     }
   }
-}
+
 
 
 export async function UpdatePlayListContents(playlistid: string, playListContents: string) {
-  if (currentUser.isLoggedIn === true) {
     const body = {
       playListId: playlistid,
       playListContents: playListContents.toString(),
@@ -141,9 +136,8 @@ export async function UpdatePlayListContents(playlistid: string, playListContent
       console.error('Error:', error);
     }
   }
-}
+
 export async function RemovePlaylistContents(playlistid: string, songId: string) {
-  if (currentUser.isLoggedIn === true) {
 
     console.log("remove content playlistiddata:", playlistid)
     console.log("remove content playlistsongid:", songId);
@@ -172,7 +166,7 @@ export async function RemovePlaylistContents(playlistid: string, songId: string)
       return Promise.reject(error);
     }
   }
-}
+
 export async function AddPlaylistToFavorite(id: string) {
   const body = {
     userToken: currentUser.userToken,

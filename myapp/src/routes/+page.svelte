@@ -1,11 +1,6 @@
 <script>
-	import { onMount } from 'svelte';
-	import SideBarContent from '../components/SideBarContent.svelte';
 	import SuggestedPlayLists from '../components/SuggestedPlayLists.svelte';
-	import UserComponent from '../components/UserComponent.svelte';
-	import { currentUser } from '../datas/user';
 	import { exportedsuggestedplaylist } from '../datas/suggestedplaylists';
-	import ResponseMessageComponent from '../components/ResponseMessageComponent.svelte';
 </script>
 <!-- <SideBarContent/> -->
 
@@ -14,7 +9,6 @@
 			<SuggestedPlayLists />
 		{/key}
 	</div>
-
 <style>
 	.centered-div {
 		position: absolute;

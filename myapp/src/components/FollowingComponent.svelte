@@ -8,43 +8,60 @@
 	onMount(() => GetFollowings(followid));
 </script>
 
-<div class="following">
-	<h1>{'Following'}</h1>
-	{#await GetFollowings(followid) then}
-		{#each following as follow}
-			<div class="user-specific">
-				<minidenticon-svg username={follow.userName.trim()} />
-				<p><a href="/user/{follow.userId}">{follow.userName}</a></p>
-			</div>
-		{/each}
-	{/await}
+<div class="following-container">
+	<h1 class="follow-header">{'Following'}</h1>
+	<div class="following-content">
+		{#await GetFollowings(followid) then}
+			{#each following as follow}
+				<div class="user-specific">
+					<minidenticon-svg username={follow.userName.trim()} />
+					<p><a href="/user/{follow.userId}">{follow.userName}</a></p>
+				</div>
+			{/each}
+		{/await}
+	</div>
 </div>
 
 <style>
-	.following {
-		border-style: dashed;
+	.following-container {
 		position: absolute;
-		color: white;
-		top: 150px;
-		left: 950px;
-		width: 500px;
+		top: 219px;
+		left: 783px;
+		width: 600px;
 		height: 350px;
-		font-size: medium;
+		display: flex;
+		flex-direction: column;
+		border-style: dashed;
+		color: white;
 	}
+
+	.following-content {
+		display: flex;
+		align-items: center;
+	}
+
+	.follow-header,
 	.following p,
-	a,
-	h1 {
+	a {
+		color: lightgray;
 		font-size: 25px;
 		text-decoration: none;
-		left: 20px;
 		padding-left: 15px;
 	}
+
+	.follow-header {
+		color: white;
+	}
+
 	.user-specific {
-		background-color: #44444411;
+		padding: 5px;
+		border-style: solid;
+		border-radius: 20px;
+		background-color: #4b4a4a;
 		width: 150px;
 		white-space: nowrap;
 		overflow: hidden;
 		cursor: pointer;
-		left: 0;
+		margin-left: 20px;
 	}
 </style>

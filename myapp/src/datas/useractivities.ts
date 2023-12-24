@@ -1,73 +1,75 @@
 import { baseUrl } from "./store";
-import {currentUser} from "./user";
+import { currentUser } from "./user";
 
 
 export function LogOut() {
     localStorage.clear();
     location.reload();
+    window.location.href='/';
 }
-export function Login(email: string, password: string) {
-    const user = {
-        userEmail: email,
-        password: password
-    };
+export async function Login(email: string, password: string) {
 
-    const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify(user),
-        headers: {
-            'Content-Type': 'application/json'
+  
+    
+    try {
+        const user = {
+            userEmail: email,
+            password: password
+        };
+
+        const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        const loginResponse = await fetch(`${baseUrl}/User/Login`, requestOptions);
+        if (!loginResponse.ok) {
+            throw new Error(loginResponse.statusText);
         }
-    };
-    fetch(`${baseUrl}/User/Login`, requestOptions)
-        .then(response => {
-            if (response.ok) {
-                window.location.href = '/';
-                return response.json();
-            }
-            else {
-                throw new Error(response.statusText);
-            }
-        })
-        .then(data => {
-            localStorage.setItem('userId', data.id);
-            localStorage.setItem('usertoken', data.userToken);
-            localStorage.setItem('userEmail', data.userEmail);
-            localStorage.setItem('userName', data.userName);
-            localStorage.setItem('isLoggedIn', "true");
-        })
-        .catch(error => {
-            console.error('Error occurred while sending the request:', error);
-        });
+        const data = await loginResponse.json();
+        localStorage.setItem('userId', data.id);
+        localStorage.setItem('usertoken', data.userToken);
+        localStorage.setItem('userEmail', data.userEmail);
+        localStorage.setItem('userName', data.userName);
+        localStorage.setItem('isLoggedIn', "true");
+        window.location.href = '/';
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
-export function Register(email: string, password: string, username: string) {
-    const user = {
-        userEmail: email,
-        userPassword: password,
-        userName: username
-    };
-    const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify(user),
-        headers: {
-            'Content-Type': 'application/json'
+
+
+export async function Register(email: string, password: string, username: string) {
+    
+    try {
+        const user = {
+            userEmail: email,
+            userPassword: password,
+            userName: username
+        };
+        const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        const registerResponse = await fetch(`${baseUrl}/User/Register`, requestOptions);
+        if (!registerResponse.ok) {
+            throw new Error(registerResponse.statusText);
         }
-    };
-    fetch(`${baseUrl}/User/Register`, requestOptions)
-        .then(response => {
-            if (response.ok) {
-                window.location.href = '/login';
-                return response.json();
-            }
-            else {
-                throw new Error(response.statusText);
-            }
-        })
-        .catch(error => {
-            console.error('Error occurred while sending the request:', error);
-        });
+        window.location.href = '/login';
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
+
 export async function ChangeEmail(newEmail: any) {
+    if(currentUser.isLoggedIn){
+  
+    
     const user = {
         newEmail: newEmail,
         userToken: currentUser.userToken
@@ -81,11 +83,11 @@ export async function ChangeEmail(newEmail: any) {
     };
     try {
 
-        const response = await fetch(`${baseUrl}/User/ChangeEmail`, requestOptions);
-        if (!response.ok) {
-            throw new Error(response.statusText);
+        const changeEmailResponse = await fetch(`${baseUrl}/User/ChangeEmail`, requestOptions);
+        if (!changeEmailResponse.ok) {
+            throw new Error(changeEmailResponse.statusText);
         }
-        const data = await response.json();
+        const data = await changeEmailResponse.json();
         console.log("changed email to:" + data);
         localStorage.setItem('userEmail', data.userEmail);
         window.location.href = "/"
@@ -94,9 +96,10 @@ export async function ChangeEmail(newEmail: any) {
     catch (error) {
         console.error('Error:', error);
     }
-
+}
 }
 export async function ChangePassword(newPassword: string) {
+    if(currentUser.isLoggedIn){
     const user = {
         newPassword: newPassword,
         userToken: currentUser.userToken
@@ -110,11 +113,11 @@ export async function ChangePassword(newPassword: string) {
     };
     try {
 
-        const response = await fetch(`${baseUrl}/User/ChangePassword`, requestOptions);
-        if (!response.ok) {
-            throw new Error(response.statusText);
+        const changePasswordResponse = await fetch(`${baseUrl}/User/ChangePassword`, requestOptions);
+        if (!changePasswordResponse.ok) {
+            throw new Error(changePasswordResponse.statusText);
         }
-        const data = await response.json();
+        const data = await changePasswordResponse.json();
         console.log("changed password to:" + data);
         localStorage.setItem('userPassword', data.userPassword);
         window.location.href = "/"
@@ -123,4 +126,5 @@ export async function ChangePassword(newPassword: string) {
     catch (error) {
         console.error('Error:', error);
     }
+}
 }

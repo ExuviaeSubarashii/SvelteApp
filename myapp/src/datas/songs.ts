@@ -1,7 +1,10 @@
   import { writable } from 'svelte/store';
   import { baseUrl } from "../datas/store";
 import currentUser from './user';
+import type { PlaylistContents } from './types';
   export async function GetSongs(id:string) {
+    if(currentUser.isLoggedIn){
+  
     const body={
       userToken:currentUser.userToken,
       playlistId:id
@@ -18,15 +21,15 @@ import currentUser from './user';
       if (!playlistContentResponse.ok) {
         throw new Error(playlistContentResponse.statusText);
       }
-      const data = await playlistContentResponse.json();
-      isFavorited.set(await isfavoritedResponse.json());
-      console.log(isFavorited);
+      const data:PlaylistContents[] = await playlistContentResponse.json();
       exportedplaylistcontents.set(data);
       console.log('get all songs:',data);
+      return await isfavoritedResponse.json();
     } catch (error) {
       console.error('Error:', error);
       return [];
     }
   }
-  export const isFavorited=writable();
-  export const exportedplaylistcontents = writable([]);
+}
+
+  export const exportedplaylistcontents = writable<PlaylistContents[]>([]);

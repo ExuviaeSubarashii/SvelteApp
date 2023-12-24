@@ -1,10 +1,14 @@
 <script lang="ts">
+	import currentUser from '../../datas/user';
 	import { Login } from '../../datas/useractivities';
 	var email = '';
 	var password = '';
 </script>
 
 <div class="loginpage">
+	{#if currentUser.isLoggedIn}
+	{window.location.href='/'}
+	{:else}
 	<h1 class="tospotify">Log in to Spotify</h1>
 	<ul class="login-options">
 		<li>
@@ -34,6 +38,7 @@
 	<h1 style="color:gray; text-align:center; font:sans-serif; margin;0 auto">
 		Already have an account? <a style="color:white;" href="/register">Sign up here</a>
 	</h1>
+	{/if}
 </div>
 
 <style>

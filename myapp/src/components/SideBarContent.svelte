@@ -34,7 +34,7 @@
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
 <div class="fullbody" id="fullbody">
-	{#if currentUser.isLoggedIn===true}
+	{#if currentUser.isLoggedIn}
 		<div class="fixed-tops">
 			<p id="howgood">{howgood}</p>
 			<!-- svelte-ignore a11y-label-has-associated-control -->

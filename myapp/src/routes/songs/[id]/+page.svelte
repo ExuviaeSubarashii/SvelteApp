@@ -5,14 +5,13 @@
 	import UserComponent from '../../../components/UserComponent.svelte';
 	import PlayListPage from '../../../components/PlayListPage.svelte';
 	import ResponseMessageComponent from '../../../components/ResponseMessageComponent.svelte';
-	import { isFavorited } from '../../../datas/songs';
 	import { AddPlaylistToFavorite } from '../../../datas/playlisthandler';
     console.log("playlistid:", data.props.playlistdata.id);
 </script>
 <!-- <SideBarContent/> -->
 {#key data.props.playlistdata.id }
 <div class="centered-div">
-	<PlayListPage exportedIdfromdata={data.props.playlistdata.id}/>
+	<PlayListPage currentplaylistId={data.props.playlistdata.id}/>
 </div>
 {/key}
 

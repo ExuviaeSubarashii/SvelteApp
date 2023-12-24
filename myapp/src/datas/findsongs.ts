@@ -15,11 +15,11 @@ export async function FindSongs(){
         headers: { 'Content-Type': 'application/json' },
       };
       try {
-        const response = await fetch(`${baseUrl}/Songs/GetAllSongs`, requestOptions);
-        if (!response.ok) {
-          throw new Error(response.statusText);
+        const songsResponse = await fetch(`${baseUrl}/Songs/GetAllSongs`, requestOptions);
+        if (!songsResponse.ok) {
+          throw new Error(songsResponse.statusText);
         }
-        const data = await response.json();
+        const data = await songsResponse.json();
         songs=data;
         console.log(`find songs:`,songs);
       } catch (error) {

@@ -8,6 +8,6 @@
 <aside>
 	<SideBarContent />
 </aside>
-{#if currentUser.isLoggedIn===true}
+{#if currentUser.isLoggedIn}
 <UserComponent />
 {/if}

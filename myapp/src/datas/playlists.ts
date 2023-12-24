@@ -2,9 +2,10 @@ import {currentUser} from '../datas/user';
 import playlistType from "../components/SideBarContent.svelte";
 import { baseUrl } from "../datas/store";
 import { writable } from 'svelte/store';
+import type { Playlist } from './types';
 
     export async function GetUserPlayLists() {
-      if(currentUser.isLoggedIn===true){
+      if(currentUser.isLoggedIn){
         
         const body={
           userToken:currentUser.userToken,
@@ -20,7 +21,7 @@ import { writable } from 'svelte/store';
           if (!response.ok) {
             throw new Error(response.statusText);
           }
-          const data = await response.json();
+          const data:Playlist[] = await response.json();
           exportedplaylists.set(data);
           console.log("Sidebar:",data);        
         } catch (error) {
@@ -29,7 +30,7 @@ import { writable } from 'svelte/store';
       }
     }
     export async function PlaylistSearch(playlistName:string){
-      if(currentUser.isLoggedIn===true){
+      if(currentUser.isLoggedIn){
 
         const body={
           playlistName:playlistName
@@ -44,7 +45,7 @@ import { writable } from 'svelte/store';
           if (!response.ok) {
             throw new Error(response.statusText);
           }
-          const data = await response.json();
+          const data:Playlist[] = await response.json();
           exportedplaylists.set(data);
           console.log("Sidebar:",data);        
         } catch (error) {
@@ -54,7 +55,7 @@ import { writable } from 'svelte/store';
       }
     }
     export async function GetPodcasts(playlistType:string){
-      if(currentUser.isLoggedIn===true){
+      if(currentUser.isLoggedIn){
 
         const body={
           userToken:currentUser.userToken,
@@ -70,7 +71,7 @@ import { writable } from 'svelte/store';
           if (!response.ok) {
             throw new Error(response.statusText);
           }
-          const data = await response.json();
+          const data:Playlist[] = await response.json();
           exportedplaylists.set(data);
           console.log("Sidebar:",data);        
         } catch (error) {
@@ -78,4 +79,4 @@ import { writable } from 'svelte/store';
         }
       }
     }
-    export const exportedplaylists = writable([]);
+    export const exportedplaylists = writable<Playlist[]>([]);
