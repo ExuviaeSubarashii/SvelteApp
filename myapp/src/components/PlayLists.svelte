@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import { GetUserPlayLists, exportedplaylists } from '../datas/playlists';
 	import PlaylistOptions from './PlaylistOptions.svelte';
-	import { minidenticon } from 'minidenticons';
 	let playlists: any = [];
 	var userprops: any = [];
 	var selectedPlaylist: any = null;

@@ -1,6 +1,5 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import { minidenticon } from 'minidenticons'
 import {GetFollowers,followers} from '../datas/followmanager';
 
 export var followid:any;

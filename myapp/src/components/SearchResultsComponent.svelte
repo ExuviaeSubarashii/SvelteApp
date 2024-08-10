@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Search, playlistdata, songsdata, userdata } from '../datas/search';
-	import { minidenticon } from 'minidenticons';
 	export let searchtext = '';
 	onMount(async () => {
 		await Search(searchtext);

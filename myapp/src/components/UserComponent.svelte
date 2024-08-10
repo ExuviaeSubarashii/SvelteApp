@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import { GetUserPropertiesByToken, userPropertiesbytoken } from '../datas/userproperties';
 	import { LogOut } from '../datas/useractivities';
-	import { minidenticon } from 'minidenticons';
 	let isToggled: any = false;
 	function handleClick() {
 		isToggled = !isToggled;
